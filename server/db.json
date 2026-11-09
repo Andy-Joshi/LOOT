@@ -1,0 +1,514 @@
+{
+  "profile": {
+    "id": 1,
+    "name": "Rookie Saver",
+    "email": "rookie@example.com",
+    "rank": "Saving Rookie",
+    "coins": 165,
+    "streak": 0,
+    "avatar": "R",
+    "accent": "lime",
+    "bio": "Building financial discipline from scratch.",
+    "unlockedPerks": [],
+    "experienceMode": "new_user",
+    "weeklyBudget": null
+  },
+  "goals": [
+    {
+      "id": 1794197703222,
+      "name": "MOTOROLA Laptop",
+      "category": "Education",
+      "saved": 1900,
+      "target": 65000,
+      "deadline": null,
+      "color": "lime",
+      "icon": "◎",
+      "completed": false,
+      "contributions": [
+        {
+          "id": "contrib_1794197723582_kynv",
+          "amount": 1000,
+          "type": "contribution",
+          "date": "2026-11-09",
+          "timestamp": 1794197723582
+        },
+        {
+          "id": "withdr_1794200282725_iciv",
+          "amount": 1000,
+          "type": "withdrawal",
+          "date": "2026-11-09",
+          "timestamp": 1794200282725
+        },
+        {
+          "id": "contrib_1794200310355_4epe",
+          "amount": 1900,
+          "type": "contribution",
+          "date": "2026-11-09",
+          "timestamp": 1794200310355
+        }
+      ],
+      "weeklySavingsPace": 1000,
+      "remaining": 63100,
+      "progressPercent": 2.9,
+      "dailySavingsPace": 142.85714285714286,
+      "etaWeeks": 63.1,
+      "etaDays": 442,
+      "estimatedCompletionDate": "2028-01-25T04:58:30.355Z",
+      "formattedEta": "63.1 weeks",
+      "formattedDate": "25 Jan 2028",
+      "status": "On Track",
+      "statusKey": "on_track"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1794202014362,
+      "type": "EXPENSE",
+      "title": "Mobile Recharge",
+      "category": "Essentials",
+      "amount": -300,
+      "date": "2026-11-09",
+      "icon": "•",
+      "userId": "1",
+      "timestamp": 1794202014362,
+      "spendingImpact": {
+        "hasImpact": true,
+        "expenseAmount": 300,
+        "expenseTitle": "Mobile Recharge",
+        "expenseCategory": "Essentials",
+        "primaryImpact": {
+          "goalId": 1794197703222,
+          "goalName": "MOTOROLA Laptop",
+          "goalCategory": "Education",
+          "goalColor": "lime",
+          "goalIcon": "◎",
+          "target": 65000,
+          "saved": 1900,
+          "remaining": 63100,
+          "weeklyPace": 1000,
+          "dailyPace": 142.85714285714286,
+          "delayDays": 2,
+          "delayWeeks": 0.3,
+          "beforeDays": 442,
+          "afterDays": 444,
+          "beforeEtaDate": "25 Jan 2028",
+          "afterEtaDate": "27 Jan 2028",
+          "beforeDateIso": "2028-01-25T05:26:54.362Z",
+          "afterDateIso": "2028-01-27T05:26:54.362Z",
+          "badgeText": "+2 DAYS",
+          "headline": "Your purchase has an impact!",
+          "message": "That purchase pushes your MOTOROLA Laptop goal back by 2 days."
+        },
+        "otherAffected": [],
+        "totalAffectedCount": 1
+      }
+    },
+    {
+      "id": 1794200310355,
+      "type": "GOAL_CONTRIBUTION",
+      "title": "Added ₹1,900 to MOTOROLA Laptop",
+      "description": "Added ₹1,900 to MOTOROLA Laptop goal.",
+      "category": "Goals",
+      "amount": -1900,
+      "goalId": "1794197703222",
+      "goalName": "MOTOROLA Laptop",
+      "userId": "1",
+      "date": "2026-11-09",
+      "timestamp": 1794200310355,
+      "icon": "🎯"
+    },
+    {
+      "id": 1794200282725,
+      "type": "GOAL_WITHDRAWAL",
+      "title": "Withdrew from MOTOROLA Laptop",
+      "description": "Withdrew ₹1,000 from MOTOROLA Laptop goal.",
+      "category": "Goals",
+      "amount": 1000,
+      "goalId": "1794197703222",
+      "goalName": "MOTOROLA Laptop",
+      "userId": "1",
+      "date": "2026-11-09",
+      "timestamp": 1794200282727,
+      "icon": "↺",
+      "isGoalWithdrawal": true
+    },
+    {
+      "id": 1794158921889,
+      "title": "Hackathon Gift",
+      "category": "Gift",
+      "amount": 1000,
+      "date": "2026-11-08",
+      "icon": "↗"
+    },
+    {
+      "id": 1794158884466,
+      "title": "Breakfast",
+      "category": "Lifestyle",
+      "amount": -100,
+      "date": "2026-11-08",
+      "icon": "•"
+    }
+  ],
+  "splits": [],
+  "pools": [],
+  "challenges": [
+    {
+      "id": 1,
+      "title": "No-Spend Weekend",
+      "description": "Zero discretionary spends for 48 hours.",
+      "reward": 30,
+      "target": 2,
+      "progress": 0,
+      "icon": "🛡️",
+      "category": "discipline",
+      "joined": false,
+      "status": "available"
+    },
+    {
+      "id": 2,
+      "title": "Daily Drip",
+      "description": "Save at least ₹50 per day for 3 consecutive days.",
+      "reward": 25,
+      "target": 3,
+      "progress": 0,
+      "icon": "💧",
+      "category": "habit",
+      "joined": false,
+      "status": "available"
+    },
+    {
+      "id": 3,
+      "title": "Track Attack",
+      "description": "Log 5 transactions to keep your spending radar razor sharp.",
+      "reward": 40,
+      "target": 5,
+      "progress": 0,
+      "icon": "⚡",
+      "category": "tracking",
+      "joined": false,
+      "status": "available"
+    }
+  ],
+  "achievements": [
+    {
+      "id": 1,
+      "title": "First Drop",
+      "description": "Save money for the first time.",
+      "reward": 50,
+      "icon": "💧",
+      "unlocked": false
+    },
+    {
+      "id": 2,
+      "title": "Level Up",
+      "description": "Reach Level 2.",
+      "reward": 100,
+      "icon": "⚡",
+      "unlocked": false
+    },
+    {
+      "id": 3,
+      "title": "Daily Drip",
+      "description": "Save for three consecutive days.",
+      "reward": 150,
+      "icon": "🔥",
+      "unlocked": false
+    },
+    {
+      "id": 4,
+      "title": "Tracker",
+      "description": "Complete a savings goal.",
+      "reward": 300,
+      "icon": "◎",
+      "unlocked": false
+    },
+    {
+      "id": 5,
+      "title": "Smart Shopper",
+      "description": "Compare 3 prices with Smart Buy.",
+      "reward": 15,
+      "icon": "🛍️",
+      "unlocked": true
+    }
+  ],
+  "pitches": [
+    {
+      "id": "7af38372-5514-4b2d-9dde-f49cac35558f",
+      "amount": 1500,
+      "purpose": "Headphones",
+      "reason": "i need for studies",
+      "chores": "wash car",
+      "duration": "",
+      "message": "i will do it for a week",
+      "tasks": [
+        {
+          "title": "wash car",
+          "duration": "",
+          "status": "completed"
+        }
+      ],
+      "status": "approved",
+      "shareToken": "768b8b0977931c5b0c897839e00f8016908fd7985f496c2fd138e396b240d8f5",
+      "parentRequestId": "27d263c3-48cf-48d7-8b33-223c0d09d503",
+      "parentShareUrl": "http://localhost:5173/parent/768b8b0977931c5b0c897839e00f8016908fd7985f496c2fd138e396b240d8f5",
+      "createdAt": "2026-11-08T19:15:43.493Z",
+      "parentMessage": "ok good",
+      "respondedAt": "2026-11-08T19:16:56.295Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1794196410644,
+      "text": "Achievement unlocked: Smart Shopper! (+15 ✦)",
+      "icon": "🛍️",
+      "read": false
+    },
+    {
+      "id": 1794165429702,
+      "text": "Completed chore \"wash car\" — 25 LOOT Coins earned!",
+      "icon": "🧹",
+      "read": false
+    },
+    {
+      "id": 1794165416909,
+      "text": "Parent approved your pitch \"₹1,500 for Headphones\"!",
+      "icon": "🎉",
+      "read": false
+    },
+    {
+      "id": 1794121282186,
+      "text": "Welcome to LOOT! Set your first goal or lodge a spend to earn coins.",
+      "icon": "✦",
+      "time": "Just now",
+      "read": false
+    }
+  ],
+  "coinTransactions": [
+    {
+      "id": "tx-earn-1794212580861-9802a86e",
+      "type": "earn",
+      "amount": 25,
+      "balanceAfter": 165,
+      "category": "activities",
+      "title": "Bill Settled: DInner at Zero Degree",
+      "description": "Settled split bill \"DInner at Zero Degree\" (₹150)",
+      "source": "split_settlement",
+      "referenceId": "split_settled_1794201828556",
+      "timestamp": "2026-11-09T08:23:00.862Z"
+    },
+    {
+      "id": "tx-earn-1794202014362-aea6c365",
+      "type": "earn",
+      "amount": 2,
+      "balanceAfter": 140,
+      "category": "activities",
+      "title": "Expense Logged: Mobile Recharge",
+      "description": "Tracked spend of ₹300",
+      "source": "transaction_log",
+      "referenceId": "tx_log_1794202014362",
+      "timestamp": "2026-11-09T05:26:54.363Z"
+    },
+    {
+      "id": "tx-earn-1794201828559-856746d7",
+      "type": "earn",
+      "amount": 5,
+      "balanceAfter": 138,
+      "category": "activities",
+      "title": "Split Bill: DInner at Zero Degree",
+      "description": "Created shared bill split for ₹150",
+      "source": "split_creation",
+      "referenceId": "split_create_1794201828556",
+      "timestamp": "2026-11-09T05:23:48.560Z"
+    },
+    {
+      "id": "tx-earn-1794200310355-a668c2c7",
+      "type": "earn",
+      "amount": 38,
+      "balanceAfter": 133,
+      "category": "goals",
+      "title": "Goal Contribution: MOTOROLA Laptop",
+      "description": "Saved ₹1,900 towards MOTOROLA Laptop",
+      "source": "goal_contribution",
+      "referenceId": "goal_contrib_1794197703222_1794200310355",
+      "timestamp": "2026-11-09T04:58:30.355Z"
+    },
+    {
+      "id": "tx-earn-1794197723582-bfc5e671",
+      "type": "earn",
+      "amount": 20,
+      "balanceAfter": 95,
+      "category": "goals",
+      "title": "Goal Contribution: MOTOROLA Laptop",
+      "description": "Saved ₹1,000 towards MOTOROLA Laptop",
+      "source": "goal_contribution",
+      "referenceId": "goal_contrib_1794197703222_1794197723582",
+      "timestamp": "2026-11-09T04:15:23.582Z"
+    },
+    {
+      "id": "tx-earn-1794197703222-c9cdc464",
+      "type": "earn",
+      "amount": 10,
+      "balanceAfter": 75,
+      "category": "goals",
+      "title": "New Goal: MOTOROLA Laptop",
+      "description": "Created savings goal with target ₹65,000",
+      "source": "goal_creation",
+      "referenceId": "goal_create_1794197703222",
+      "timestamp": "2026-11-09T04:15:03.222Z"
+    },
+    {
+      "id": "tx-earn-1794196797859-ea646c58",
+      "type": "earn",
+      "amount": 2,
+      "balanceAfter": 65,
+      "category": "smartbuy",
+      "title": "Smart Buy: Lenovo IdeaCentre AIO Intel Core i7-13620H 24\" FHD (24GB RAM/1TB SSD/Win11/Microsoft 365 Basic + Office Home 2024/Wireless Charging/Wireless EOS Keyboard & Mouse,Grey) All-in-One Desktop",
+      "description": "Compared prices across stores (saved ₹68,905)",
+      "source": "smartbuy_comparison",
+      "referenceId": "smartbuy_comp_1794196797859",
+      "timestamp": "2026-11-09T03:59:57.859Z"
+    },
+    {
+      "id": "tx-earn-1794196475289-6b69723a",
+      "type": "earn",
+      "amount": 2,
+      "balanceAfter": 63,
+      "category": "smartbuy",
+      "title": "Smart Buy: ASUS Vivobook 15 (2026),Intel Core 3 100U (i3-14th Gen),Intel iGPU, 8GB/512GB, FHD, 15.6\"(39.6 cm),Windows 11,M365 Basic(1 Year)* Office 2024,Quiet Blue,1.7 Kg, X1504VAP-BQ1322WS,Thin & Light Laptop",
+      "description": "Compared prices across stores (saved ₹44,000)",
+      "source": "smartbuy_comparison",
+      "referenceId": "smartbuy_comp_1794196475289",
+      "timestamp": "2026-11-09T03:54:35.289Z"
+    },
+    {
+      "id": "tx-earn-1794196410644-ed261a52",
+      "type": "earn",
+      "amount": 15,
+      "balanceAfter": 61,
+      "category": "achievements",
+      "title": "Achievement: Smart Shopper",
+      "description": "Compare 3 prices with Smart Buy.",
+      "source": "achievement_unlock",
+      "referenceId": "achievement_5_unlock",
+      "timestamp": "2026-11-09T03:53:30.644Z"
+    },
+    {
+      "id": "tx-earn-1794196410644-63190048",
+      "type": "earn",
+      "amount": 2,
+      "balanceAfter": 46,
+      "category": "smartbuy",
+      "title": "Smart Buy: Apple iPhone 17 Pro 256GB Natural Titanium",
+      "description": "Compared prices across stores (saved ₹10,000)",
+      "source": "smartbuy_comparison",
+      "referenceId": "smartbuy_comp_1794196410643",
+      "timestamp": "2026-11-09T03:53:30.644Z"
+    },
+    {
+      "id": "tx-earn-1794165429702-37f07149",
+      "type": "earn",
+      "amount": 25,
+      "balanceAfter": 44,
+      "category": "chores",
+      "title": "Chore Done: wash car",
+      "description": "Completed chore for pitch \"Headphones\"",
+      "source": "chore_completion",
+      "referenceId": "chore_7af38372-5514-4b2d-9dde-f49cac35558f_0_complete",
+      "timestamp": "2026-11-08T19:17:09.702Z"
+    },
+    {
+      "id": "tx-earn-1794165343493-434eeab6",
+      "type": "earn",
+      "amount": 5,
+      "balanceAfter": 19,
+      "category": "activities",
+      "title": "Proposal Drafted: Headphones",
+      "description": "Created thoughtful parent pitch for ₹1,500",
+      "source": "pitch_creation",
+      "referenceId": "pitch_create_7af38372-5514-4b2d-9dde-f49cac35558f",
+      "timestamp": "2026-11-08T19:15:43.493Z"
+    },
+    {
+      "id": "tx-earn-1794162772242-f30afbf6",
+      "type": "earn",
+      "amount": 2,
+      "balanceAfter": 14,
+      "category": "smartbuy",
+      "title": "Smart Buy: MacBook Air M3",
+      "description": "Compared prices across stores (saved ₹4,76,710)",
+      "source": "smartbuy_comparison",
+      "referenceId": "smartbuy_comp_1794162772242",
+      "timestamp": "2026-11-08T18:32:52.242Z"
+    },
+    {
+      "id": "tx-earn-1794160811386-7ee48a30",
+      "type": "earn",
+      "amount": 5,
+      "balanceAfter": 12,
+      "category": "smartbuy",
+      "title": "Smart Buy: OnePlus Nord 6 | 8GB+256GB | Fresh Mint | Snapdragon 8s Gen 4 | Segment's First Stable 165FPS Gaming | Segment's Largest 9000mAh Battery | Most Complete IP Rating | Personalized AI",
+      "description": "Compared prices across stores (saved ₹9,476)",
+      "source": "smartbuy_comparison",
+      "referenceId": "smartbuy_comp_1794160811386",
+      "timestamp": "2026-11-08T18:00:11.386Z"
+    },
+    {
+      "id": "tx-earn-1794158921889-41e1f103",
+      "type": "earn",
+      "amount": 5,
+      "balanceAfter": 7,
+      "category": "activities",
+      "title": "Income Logged: Hackathon Gift",
+      "description": "Recorded income of ₹1,000",
+      "source": "transaction_log",
+      "referenceId": "tx_log_1794158921889",
+      "timestamp": "2026-11-08T17:28:41.889Z"
+    },
+    {
+      "id": "tx-earn-1794158884482-7eb7d720",
+      "type": "earn",
+      "amount": 2,
+      "balanceAfter": 2,
+      "category": "activities",
+      "title": "Expense Logged: Breakfast",
+      "description": "Tracked spend of ₹100",
+      "source": "transaction_log",
+      "referenceId": "tx_log_1794158884466",
+      "timestamp": "2026-11-08T17:28:04.484Z"
+    }
+  ],
+  "smartBuyStats": {
+    "totalComparisons": 7,
+    "lastComparisonDate": "2026-11-09",
+    "dailyCount": 3
+  },
+  "parentRequests": [
+    {
+      "id": "27d263c3-48cf-48d7-8b33-223c0d09d503",
+      "owner_id": "rookie@example.com",
+      "pitch_id": "7af38372-5514-4b2d-9dde-f49cac35558f",
+      "request_type": "purchase",
+      "title": "₹1,500 for Headphones",
+      "description": "i need for studies",
+      "requested_amount": 1500,
+      "currency": "INR",
+      "status": "approved",
+      "token_hash": "e9187e40f9b3d83ee03a9330efc3b0109bbd2e9205c037da6426ab7edf3e7e91",
+      "expires_at": "2026-11-15T19:15:42.949Z",
+      "created_at": "2026-11-08T19:15:42.949Z",
+      "responded_at": "2026-11-08T19:16:56.295Z",
+      "parent_message": "ok good",
+      "response_type": "approved",
+      "metadata": {
+        "tasks": [
+          {
+            "title": "wash car",
+            "duration": "",
+            "status": "proposed"
+          }
+        ],
+        "duration": ""
+      }
+    }
+  ]
+}
