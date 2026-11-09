@@ -1,0 +1,177 @@
+/* ==========================================================================
+   Split Bill Card Styles (Money Lab)
+   Compact, futuristic fintech styling for split bill history
+   ========================================================================== */
+
+.split-bill-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  padding: 18px 20px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(103, 255, 58, 0.22);
+}
+
+.split-bill-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(103, 255, 58, 0.45);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 16px rgba(103, 255, 58, 0.15);
+}
+
+.split-bill-card.settled-card {
+  background: radial-gradient(circle at 90% 10%, rgba(103, 255, 58, 0.12), transparent 45%),
+              linear-gradient(145deg, #162417, #0e1710);
+  border-color: rgba(103, 255, 58, 0.4);
+}
+
+.split-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.split-status-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.split-status-tag.pending {
+  background: rgba(255, 190, 59, 0.14);
+  border: 1px solid rgba(255, 190, 59, 0.35);
+  color: #ffbe3b;
+}
+
+.split-status-tag.partial {
+  background: rgba(0, 229, 255, 0.14);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: #00e5ff;
+}
+
+.split-status-tag.settled {
+  background: rgba(103, 255, 58, 0.16);
+  border: 1px solid var(--lime, #67ff3a);
+  color: var(--lime, #67ff3a);
+}
+
+.split-method-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 9px;
+  color: #8c9e8e;
+  letter-spacing: 0.08em;
+}
+
+.split-card-title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f2f8f1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.split-card-total {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  font-family: var(--font-mono, monospace);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.split-card-progress-wrap {
+  width: 100%;
+  height: 6px;
+  border-radius: 4px;
+  background: rgba(45, 60, 48, 0.5);
+  border: 1px solid rgba(103, 255, 58, 0.15);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.split-card-progress-bar {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #8a4dff, #67ff3a);
+  transition: width 0.4s ease;
+}
+
+.split-card-progress-bar.fully-settled {
+  background: var(--lime, #67ff3a);
+}
+
+.split-card-amounts-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+
+.amt-settled {
+  color: var(--lime, #67ff3a);
+}
+
+.amt-remaining {
+  color: #ffbe3b;
+}
+
+.settled-card .amt-remaining {
+  color: var(--lime, #67ff3a);
+}
+
+.split-card-participants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.p-pill {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+}
+
+.p-pill.pending {
+  background: rgba(26, 38, 28, 0.8);
+  border: 1px solid rgba(103, 255, 58, 0.15);
+  color: #a7bca9;
+}
+
+.p-pill.paid {
+  background: rgba(103, 255, 58, 0.15);
+  border: 1px solid rgba(103, 255, 58, 0.35);
+  color: var(--lime, #67ff3a);
+}
+
+.p-pill.more {
+  background: rgba(30, 42, 32, 0.6);
+  color: #8c9e8e;
+}
+
+.split-card-action-hint {
+  font-size: 10px;
+  color: #8c9e8e;
+  border-top: 1px solid rgba(103, 255, 58, 0.1);
+  padding-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.split-bill-card:hover .split-card-action-hint span {
+  color: var(--lime, #67ff3a);
+}

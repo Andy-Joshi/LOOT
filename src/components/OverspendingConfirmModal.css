@@ -1,0 +1,259 @@
+/* =========================================================
+   OVERSPENDING CONFIRMATION MODAL
+   Headline: "Whoa! You're going beyond your balance."
+   Displays: Current balance, requested spend, shortfall.
+   Actions: Cancel vs Continue Anyway.
+   ========================================================= */
+
+.overspend-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99996;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(4, 7, 5, 0.92);
+  backdrop-filter: blur(16px);
+  animation: overspendFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes overspendFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.overspend-card {
+  width: min(560px, 100%);
+  padding: 32px 28px;
+  border-radius: var(--radius-md, 16px);
+  background: linear-gradient(155deg, rgba(28, 20, 16, 0.98), rgba(15, 12, 10, 0.99));
+  border: 1px solid rgba(255, 140, 40, 0.38);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.92), 0 0 40px rgba(255, 140, 40, 0.16);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  animation: overspendScale 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes overspendScale {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.overspend-icon-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.overspend-alert-icon {
+  font-size: 20px;
+}
+
+.overspend-kicker {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #ff9d42;
+}
+
+.overspend-title {
+  margin: 0 0 10px;
+  font-size: clamp(22px, 2.8vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  line-height: 1.25;
+}
+
+.overspend-desc {
+  margin: 0 0 20px;
+  font-size: 14px;
+  color: #c4b5ab;
+  line-height: 1.5;
+}
+
+.overspend-desc b {
+  color: #f7faf7;
+}
+
+.overspend-desc i {
+  color: #ffbe26;
+  font-style: normal;
+}
+
+/* Math breakdown box */
+.overspend-math-box {
+  padding: 16px;
+  border-radius: var(--radius-sm, 12px);
+  background: rgba(14, 11, 10, 0.85);
+  border: 1px solid rgba(255, 140, 40, 0.25);
+  margin-bottom: 16px;
+}
+
+.overspend-math-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.math-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.math-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9cb09f;
+}
+
+.math-val {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.math-val.lime {
+  color: var(--lime);
+}
+
+.math-val.red {
+  color: #ff708d;
+}
+
+.math-val.alert {
+  color: #ff9d42;
+}
+
+.math-operator {
+  font-size: 18px;
+  font-weight: 800;
+  color: #7b716b;
+  padding: 0 2px;
+}
+
+.shortfall-col {
+  padding-left: 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Consequences */
+.overspend-consequence-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: rgba(255, 140, 40, 0.08);
+  border: 1px solid rgba(255, 140, 40, 0.2);
+  margin-bottom: 22px;
+}
+
+.consequence-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: #d1c5bc;
+  line-height: 1.4;
+}
+
+.consequence-bullet span {
+  color: #ff9d42;
+  font-weight: 800;
+}
+
+.consequence-bullet p {
+  margin: 0;
+}
+
+.consequence-bullet b {
+  color: #fff;
+}
+
+/* Action Buttons */
+.overspend-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.overspend-cancel-btn {
+  flex: 1;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: var(--radius-sm, 10px);
+}
+
+.overspend-continue-btn {
+  flex: 1.4;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: var(--radius-sm, 10px);
+  background: linear-gradient(135deg, #ff9d42, #ff5277);
+  border-color: #ffb16b;
+  color: #0b0704;
+  box-shadow: 0 0 20px rgba(255, 140, 40, 0.4);
+}
+
+.overspend-continue-btn:hover {
+  background: linear-gradient(135deg, #ffa959, #ff698b);
+  box-shadow: 0 0 28px rgba(255, 140, 40, 0.6);
+}
+
+@media (max-width: 520px) {
+  .overspend-card {
+    padding: 24px 18px;
+  }
+
+  .overspend-math-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .math-operator {
+    display: none;
+  }
+
+  .shortfall-col {
+    padding-left: 0;
+    border-left: none;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+  }
+
+  .overspend-actions {
+    flex-direction: column;
+  }
+
+  .overspend-cancel-btn,
+  .overspend-continue-btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overspend-overlay,
+  .overspend-card {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,334 @@
+/* =========================================================
+   OUTSTANDING SHORTFALL DASHBOARD CARD
+   Prominent card on Dashboard:
+   Settled State (Green positive glow) vs
+   Active Shortfall State (Amber/Red glow with progress bar)
+   ========================================================= */
+
+.shortfall-dashboard-card {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-radius: var(--radius-md, 14px);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.shortfall-dashboard-card:hover {
+  transform: translateY(-3px);
+}
+
+.shortfall-dashboard-card.state-settled {
+  background: linear-gradient(145deg, rgba(16, 26, 18, 0.88), rgba(10, 16, 11, 0.95));
+  border: 1px solid rgba(103, 255, 58, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 16px rgba(103, 255, 58, 0.08);
+}
+
+.shortfall-dashboard-card.state-settled:hover {
+  border-color: rgba(103, 255, 58, 0.45);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(103, 255, 58, 0.16);
+}
+
+.shortfall-dashboard-card.state-active-debt {
+  background: linear-gradient(145deg, rgba(30, 18, 14, 0.92), rgba(16, 10, 8, 0.96));
+  border: 1px solid rgba(255, 140, 40, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 140, 40, 0.18);
+}
+
+.shortfall-dashboard-card.state-active-debt:hover {
+  border-color: rgba(255, 140, 40, 0.7);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 28px rgba(255, 140, 40, 0.28);
+}
+
+.shortfall-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.shortfall-card-kicker {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #9cb09f;
+}
+
+.shortfall-card-title {
+  margin: 3px 0 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f7faf7;
+}
+
+.shortfall-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.settled-pill {
+  background: rgba(103, 255, 58, 0.16);
+  border: 1px solid rgba(103, 255, 58, 0.38);
+  color: var(--lime);
+}
+
+.settled-pill .status-dot {
+  background: var(--lime);
+  box-shadow: 0 0 8px var(--lime);
+}
+
+.alert-pill {
+  background: rgba(255, 140, 40, 0.2);
+  border: 1px solid rgba(255, 140, 40, 0.45);
+  color: #ffae57;
+  animation: alertPulseGlow 2s infinite ease-in-out;
+}
+
+.alert-pill .status-dot {
+  background: #ffae57;
+  box-shadow: 0 0 8px #ffae57;
+}
+
+@keyframes alertPulseGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+
+/* Positive Settled Body */
+.shortfall-settled-body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 6px 0;
+}
+
+.settled-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(103, 255, 58, 0.14);
+  border: 1px solid rgba(103, 255, 58, 0.32);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.settled-shield {
+  font-size: 24px;
+}
+
+.settled-text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.settled-headline {
+  font-size: 15px;
+  font-weight: 800;
+  color: #f7faf7;
+}
+
+.settled-desc {
+  margin: 0;
+  font-size: 13px;
+  color: #9cb09f;
+  line-height: 1.4;
+}
+
+.shortfall-details-link {
+  background: transparent;
+  border: none;
+  color: var(--lime);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.shortfall-details-link:hover {
+  background: rgba(103, 255, 58, 0.12);
+}
+
+/* Active Shortfall Body */
+.shortfall-active-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.shortfall-amount-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.shortfall-main-num {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.shortfall-currency {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ff9d42;
+}
+
+.shortfall-val {
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.shortfall-due-tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ff9d42;
+}
+
+.shortfall-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shortfall-progress-labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #9cb09f;
+}
+
+.progress-ratio {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  color: #e6ede6;
+}
+
+.shortfall-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(45, 30, 24, 0.7);
+  overflow: hidden;
+  border: 1px solid rgba(255, 140, 40, 0.2);
+}
+
+.shortfall-track-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #ff9d42, #67ff3a);
+  box-shadow: 0 0 10px rgba(255, 140, 40, 0.4);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.recent-shortfall-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(18, 12, 10, 0.75);
+  border: 1px solid rgba(255, 140, 40, 0.2);
+}
+
+.recent-sf-icon {
+  font-size: 16px;
+  color: #ff9d42;
+}
+
+.recent-sf-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.recent-sf-info strong {
+  font-size: 13px;
+  color: #f7faf7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recent-sf-info small {
+  font-size: 11px;
+  color: #9cb09f;
+}
+
+.shortfall-footer-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 6px;
+}
+
+.shortfall-auto-hint {
+  margin: 0;
+  font-size: 12px;
+  color: #8c9e8e;
+  line-height: 1.35;
+}
+
+.shortfall-view-btn {
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .shortfall-settled-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .shortfall-footer-action {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .shortfall-view-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shortfall-dashboard-card,
+  .shortfall-track-fill {
+    transition: none !important;
+  }
+  .alert-pill {
+    animation: none !important;
+  }
+}

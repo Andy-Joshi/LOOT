@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Coin Flying Effect Styles (60fps CSS GPU Accelerated)
+   ========================================================================== */
+
+.coin-flying-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999999;
+  overflow: hidden;
+}
+
+.flying-coin-particle {
+  position: fixed;
+  width: 22px;
+  height: 22px;
+  will-change: transform, opacity;
+  animation: flyToHeader 0.85s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+}
+
+@keyframes flyToHeader {
+  0% {
+    transform: translate(var(--start-x), var(--start-y)) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translate(calc(var(--start-x) + var(--scatter-x)), calc(var(--start-y) + var(--scatter-y))) scale(1.25) rotate(90deg);
+  }
+  75% {
+    opacity: 1;
+    transform: translate(calc(var(--end-x) * 0.9 + var(--start-x) * 0.1), calc(var(--end-y) * 0.9 + var(--start-y) * 0.1)) scale(1) rotate(270deg);
+  }
+  100% {
+    transform: translate(var(--end-x), var(--end-y)) scale(0.4) rotate(420deg);
+    opacity: 0;
+  }
+}
+
+.coin-particle-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff, #c8ff3d 30%, #67ff3a 75%, #2a8a16);
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 0 12px #67ff3a, 0 0 20px rgba(103, 255, 58, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #081508;
+  font-weight: 900;
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+}
+
+/* Header Coin Counter Pulse */
+.header-coin-pulse {
+  animation: coinCounterPulse 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes coinCounterPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.35) rotate(-4deg); filter: drop-shadow(0 0 16px #67ff3a); }
+  100% { transform: scale(1); filter: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flying-coin-particle {
+    animation-duration: 0.05s !important;
+  }
+  .header-coin-pulse {
+    animation: none !important;
+  }
+}

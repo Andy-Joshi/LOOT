@@ -1,0 +1,1370 @@
+/* =========================================================
+   LOOT SMART BUY LAB — DESIGN SYSTEM STYLES
+   Colors: Neon Lime #67ff3a, Electric Purple #8a4dff, Dark Base #090e0a
+   ========================================================= */
+
+.smartbuy-page-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* 1. Header / Intro Banner */
+.smartbuy-hero-banner {
+  background: radial-gradient(circle at 80% 20%, rgba(138, 77, 255, 0.15), transparent 45%),
+              linear-gradient(135deg, rgba(22, 34, 23, 0.8), rgba(14, 21, 15, 0.95));
+  border: 1px solid rgba(103, 255, 58, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(103, 255, 58, 0.08);
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.smartbuy-hero-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.smartbuy-hero-text h1 {
+  margin: 6px 0 8px;
+  font-size: clamp(24px, 3vw, 32px);
+  letter-spacing: -0.04em;
+  color: #f2f8f1;
+}
+
+.smartbuy-hero-text p {
+  margin: 0;
+  color: #a4b8a6;
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 580px;
+}
+
+.smartbuy-savings-metric {
+  background: rgba(18, 28, 20, 0.9);
+  border: 1px solid rgba(138, 77, 255, 0.4);
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 0 16px rgba(138, 77, 255, 0.15);
+}
+
+.smartbuy-metric-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(138, 77, 255, 0.2);
+  border: 1px solid rgba(138, 77, 255, 0.4);
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+}
+
+.smartbuy-metric-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.smartbuy-metric-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #a4b8a6;
+  text-transform: uppercase;
+}
+
+.smartbuy-metric-val {
+  font-size: 22px;
+  font-weight: 800;
+  color: #c9a8ff;
+  letter-spacing: -0.02em;
+}
+
+.smartbuy-metric-info small {
+  font-size: 10px;
+  color: #7b8e7c;
+}
+
+/* 2. Unified Search Box Card */
+.smartbuy-search-card {
+  padding: 22px 24px;
+  background: linear-gradient(145deg, rgba(19, 29, 20, 0.95), rgba(12, 18, 13, 0.98));
+  border: 1px solid rgba(103, 255, 58, 0.3);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(103, 255, 58, 0.06);
+}
+
+.smartbuy-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.smartbuy-input-wrap {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.smartbuy-search-icon {
+  position: absolute;
+  left: 16px;
+  color: #67ff3a;
+  font-size: 16px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.smartbuy-input {
+  width: 100%;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 0 42px 0 46px;
+  background: #0b130c;
+  border: 1.5px solid #283a2a;
+  border-radius: 10px;
+  color: #f2f8f1;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s;
+}
+
+.smartbuy-input:focus {
+  background: #0e170f;
+  border-color: #67ff3a;
+  box-shadow: 0 0 0 1.5px rgba(103, 255, 58, 0.3), 0 0 18px rgba(103, 255, 58, 0.16);
+}
+
+.smartbuy-input::placeholder {
+  color: #6b7e6d;
+  font-size: 13.5px;
+}
+
+.smartbuy-clear-btn {
+  position: absolute;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(45, 62, 47, 0.6);
+  border: none;
+  color: #a4b8a6;
+  font-size: 11px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.15s ease;
+  z-index: 2;
+}
+
+.smartbuy-clear-btn:hover {
+  background: rgba(103, 255, 58, 0.2);
+  color: #67ff3a;
+}
+
+.smartbuy-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.smartbuy-paste-btn {
+  height: 48px;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 10px;
+  background: #142116;
+  border: 1px solid #2b3d2d;
+  color: #dce7dd;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  outline: none;
+}
+
+.smartbuy-paste-btn:hover {
+  border-color: #8a4dff;
+  color: #fff;
+  background: #1a2c1e;
+  box-shadow: 0 0 12px rgba(138, 77, 255, 0.2);
+}
+
+.smartbuy-search-btn {
+  height: 48px;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  background: #67ff3a;
+  color: #071209;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(103, 255, 58, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.smartbuy-search-btn:hover:not(:disabled) {
+  background: #78ff50;
+  box-shadow: 0 0 24px rgba(103, 255, 58, 0.5);
+  transform: translateY(-1px);
+}
+
+.smartbuy-search-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.smartbuy-search-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.smartbuy-sample-btn {
+  height: 48px;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  background: rgba(138, 77, 255, 0.08);
+  border: 1px solid rgba(138, 77, 255, 0.35);
+  color: #c9a8ff;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  outline: none;
+}
+
+.smartbuy-sample-btn:hover {
+  background: rgba(138, 77, 255, 0.18);
+  border-color: #8a4dff;
+  color: #fff;
+  box-shadow: 0 0 14px rgba(138, 77, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.smartbuy-search-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #1c2a1e;
+}
+
+.smartbuy-chips-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.smartbuy-chips-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #7a8d7c;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.smartbuy-chip {
+  padding: 5px 11px;
+  border-radius: 6px;
+  background: #132015;
+  border: 1px solid #263828;
+  color: #c9d9cb;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.smartbuy-chip:hover {
+  border-color: #67ff3a;
+  color: #67ff3a;
+  background: #17271a;
+  transform: translateY(-1px);
+}
+
+.smartbuy-supported-stores {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: #7a8d7c;
+}
+
+.supported-stores-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #7a8d7c;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.supported-stores-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.supported-store-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(22, 34, 24, 0.6);
+  border: 1px solid #243525;
+  font-size: 11px;
+  color: #a4b8a6;
+  transition: border-color 0.15s;
+}
+
+.supported-store-pill:hover {
+  border-color: #4b7a4f;
+  color: #dce7dd;
+}
+
+/* Sample Demo Banner */
+.smartbuy-demo-banner {
+  background: linear-gradient(135deg, rgba(138, 77, 255, 0.15), rgba(103, 255, 58, 0.1));
+  border: 1px dashed rgba(138, 77, 255, 0.5);
+  border-radius: 10px;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.demo-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.demo-pill {
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #8a4dff;
+  color: #fff;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.demo-text {
+  font-size: 13px;
+  color: #d8c7ff;
+}
+
+.clear-demo-btn {
+  background: transparent;
+  border: 1px solid #5a42a0;
+  border-radius: 6px;
+  color: #c9b4ff;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.clear-demo-btn:hover {
+  border-color: #8a4dff;
+  color: #fff;
+}
+
+/* 3. Error Alert */
+.smartbuy-error-card {
+  background: rgba(45, 15, 25, 0.85);
+  border: 1px solid rgba(255, 77, 120, 0.4);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.smartbuy-error-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.smartbuy-error-icon {
+  font-size: 28px;
+}
+
+.smartbuy-error-text strong {
+  display: block;
+  font-size: 15px;
+  color: #ff94af;
+  margin-bottom: 2px;
+}
+
+.smartbuy-error-text p {
+  margin: 0;
+  font-size: 13px;
+  color: #d9b0ba;
+}
+
+/* 4. Refined Compact Comparison Progress Panel */
+.smartbuy-loading-card {
+  padding: 22px 24px;
+  background: linear-gradient(145deg, rgba(17, 26, 18, 0.95), rgba(12, 18, 13, 0.98));
+  border: 1px solid rgba(103, 255, 58, 0.25);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(103, 255, 58, 0.05);
+}
+
+/* Subtle top laser scanning beam */
+.smartbuy-scan-beam-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(103, 255, 58, 0.12);
+  overflow: hidden;
+}
+
+.smartbuy-scan-beam {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 35%;
+  background: linear-gradient(90deg, transparent, #67ff3a, transparent);
+  animation: smartbuy-scan 1.8s ease-in-out infinite;
+}
+
+@keyframes smartbuy-scan {
+  0% { left: -35%; }
+  100% { left: 100%; }
+}
+
+.smartbuy-loading-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.smartbuy-loading-pulse-ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(103, 255, 58, 0.08);
+  border: 1.5px solid rgba(103, 255, 58, 0.35);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 14px rgba(103, 255, 58, 0.15);
+}
+
+.smartbuy-pulse-core {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #67ff3a;
+  box-shadow: 0 0 10px #67ff3a;
+  animation: smartbuy-radar-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes smartbuy-radar-pulse {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 16px #67ff3a, 0 0 24px rgba(103, 255, 58, 0.4);
+  }
+}
+
+.smartbuy-loading-titles h3 {
+  margin: 0 0 2px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #f2f8f1;
+}
+
+.smartbuy-loading-sub {
+  margin: 0;
+  font-size: 13px;
+  color: #8fa291;
+  line-height: 1.4;
+}
+
+/* 5-Store Retailer Grid */
+.smartbuy-retailers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 10px;
+}
+
+.smartbuy-retailer-tile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 11px 14px;
+  border-radius: 9px;
+  background: #131f15;
+  border: 1px solid #223424;
+  transition: all 0.25s ease;
+}
+
+/* Retailer States: Waiting, Searching, Completed, Unavailable, Failed */
+.smartbuy-retailer-tile.state-waiting {
+  background: #111a12;
+  border-color: #203022;
+  opacity: 0.75;
+}
+
+.smartbuy-retailer-tile.state-searching {
+  background: rgba(22, 19, 36, 0.75);
+  border-color: rgba(138, 77, 255, 0.45);
+  box-shadow: 0 0 14px rgba(138, 77, 255, 0.14);
+}
+
+.smartbuy-retailer-tile.state-completed {
+  background: rgba(19, 32, 21, 0.9);
+  border-color: rgba(103, 255, 58, 0.35);
+  box-shadow: 0 0 12px rgba(103, 255, 58, 0.08);
+}
+
+.smartbuy-retailer-tile.state-unavailable {
+  background: #0f1610;
+  border-color: #1b271d;
+  opacity: 0.6;
+}
+
+.smartbuy-retailer-tile.state-failed {
+  background: rgba(38, 24, 16, 0.75);
+  border-color: rgba(232, 146, 82, 0.38);
+}
+
+.retailer-tile-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.retailer-tile-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.retailer-tile-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2ece3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Status Badges */
+.retailer-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Subtle green indicators for completed retailers */
+.retailer-status-badge.status-completed {
+  color: #67ff3a;
+  background: rgba(103, 255, 58, 0.12);
+  border: 1px solid rgba(103, 255, 58, 0.28);
+}
+
+/* Subtle animated indicator for searching retailers */
+.retailer-status-badge.status-searching {
+  color: #c9a8ff;
+  background: rgba(138, 77, 255, 0.16);
+  border: 1px solid rgba(138, 77, 255, 0.38);
+}
+
+/* Neutral indicators for waiting */
+.retailer-status-badge.status-waiting {
+  color: #7b8e7c;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #243525;
+}
+
+/* Neutral muted indicator for unavailable */
+.retailer-status-badge.status-unavailable {
+  color: #607062;
+  background: transparent;
+  border: 1px solid #1e2c20;
+}
+
+/* Restrained warning indicator for failures */
+.retailer-status-badge.status-failed {
+  color: #f4a460;
+  background: rgba(232, 146, 82, 0.12);
+  border: 1px solid rgba(232, 146, 82, 0.3);
+}
+
+.status-symbol {
+  font-size: 10px;
+}
+
+/* 5. Verdict Card (Hero Outcome) */
+.smartbuy-verdict-card {
+  padding: 28px;
+  background: radial-gradient(circle at 90% 10%, rgba(103, 255, 58, 0.12), transparent 40%),
+              linear-gradient(145deg, rgba(22, 34, 23, 0.95), rgba(12, 19, 13, 0.98));
+  border: 1.5px solid #67ff3a;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(103, 255, 58, 0.18);
+  position: relative;
+}
+
+.verdict-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.verdict-badge-pills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.verdict-tag-best {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(103, 255, 58, 0.15);
+  border: 1px solid #67ff3a;
+  color: #67ff3a;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.verdict-store-pill {
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: #253927;
+  color: #f2f8f1;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.verdict-verified-pill {
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: rgba(138, 77, 255, 0.2);
+  border: 1px solid rgba(138, 77, 255, 0.4);
+  color: #c9a8ff;
+  font-size: 11px;
+}
+
+.verdict-vs-highest {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: #8e9e8f;
+}
+
+.verdict-price-container {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.verdict-main-price {
+  font-size: clamp(36px, 5vw, 48px);
+  font-weight: 800;
+  color: #67ff3a;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.verdict-mrp {
+  font-size: 16px;
+  color: #7a8d7c;
+  text-decoration: line-through;
+}
+
+.verdict-savings-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(138, 77, 255, 0.2);
+  border: 1px solid #8a4dff;
+  color: #e2d4ff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.verdict-savings-tag strong {
+  color: #67ff3a;
+}
+
+/* Verdict Actions Bar */
+.verdict-actions-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid #293a2b;
+}
+
+.verdict-action-pill {
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #152217;
+  border: 1px solid #2d442f;
+  color: #dbe7dc;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  min-height: 44px;
+}
+
+.verdict-action-pill:hover {
+  border-color: #67ff3a;
+  color: #fff;
+  background: #1b2d1d;
+}
+
+.verdict-action-pill.active {
+  border-color: #8a4dff;
+  background: rgba(138, 77, 255, 0.25);
+  color: #e6dbff;
+  box-shadow: 0 0 12px rgba(138, 77, 255, 0.3);
+}
+
+.verdict-why-differ {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: rgba(13, 20, 14, 0.6);
+  border-radius: 8px;
+  font-size: 12px;
+  color: #8c9e8e;
+  line-height: 1.5;
+}
+
+/* 6. Visual Price Comparison Bar Chart */
+.smartbuy-chart-card {
+  padding: 24px;
+  background: #111a12;
+  border: 1px solid #2b3d2d;
+}
+
+.smartbuy-chart-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+
+.smartbuy-chart-title-row h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #f2f8f1;
+}
+
+.smartbuy-chart-title-row span {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #7b8e7c;
+}
+
+.smartbuy-bars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.smartbuy-bar-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 140px;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.smartbuy-bar-row.lowest-row {
+  background: rgba(103, 255, 58, 0.08);
+  border: 1px solid rgba(103, 255, 58, 0.25);
+}
+
+.bar-store-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f2f8f1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bar-lowest-pill {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #67ff3a;
+  color: #081309;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.bar-track-wrap {
+  position: relative;
+  height: 14px;
+  background: #172418;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #3d7e44, #489950);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bar-fill.lowest {
+  background: linear-gradient(90deg, #67ff3a, #b9ff6a);
+  box-shadow: 0 0 10px rgba(103, 255, 58, 0.5);
+}
+
+.bar-price-meta {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bar-price-val {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f2f8f1;
+}
+
+.bar-diff-val {
+  font-size: 11px;
+  color: #8ea090;
+}
+
+/* 7. Ranked Store Offers List */
+.smartbuy-ranked-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.smartbuy-ranked-card {
+  padding: 18px 22px;
+  background: #121c13;
+  border: 1px solid #2c3e2e;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.smartbuy-ranked-card:hover {
+  transform: translateY(-1px);
+  border-color: #4b664e;
+}
+
+.smartbuy-ranked-card.is-lowest {
+  border-color: #67ff3a;
+  background: linear-gradient(135deg, rgba(22, 34, 23, 0.95), rgba(14, 22, 15, 0.95));
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4), 0 0 14px rgba(103, 255, 58, 0.1);
+}
+
+.ranked-card-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ranked-num-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #1b281d;
+  color: #a4b8a6;
+  display: grid;
+  place-items: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.smartbuy-ranked-card.is-lowest .ranked-num-pill {
+  background: #67ff3a;
+  color: #09130a;
+}
+
+.ranked-details h4 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  color: #f2f8f1;
+}
+
+.ranked-details p {
+  margin: 0;
+  font-size: 12px;
+  color: #7d907e;
+}
+
+.ranked-card-action {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ranked-price-block {
+  text-align: right;
+}
+
+.ranked-price-block strong {
+  display: block;
+  font-size: 20px;
+  color: #f2f8f1;
+}
+
+.smartbuy-ranked-card.is-lowest .ranked-price-block strong {
+  color: #67ff3a;
+}
+
+.ranked-diff-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #8c9e8d;
+}
+
+.ranked-buy-btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  min-height: 44px;
+}
+
+/* 8. Product Summary & Specs Card */
+.smartbuy-product-summary-card {
+  padding: 24px;
+  background: #101811;
+  border: 1px solid #293a2a;
+}
+
+.product-summary-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.product-img-box {
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
+  background: #162418;
+  border: 1px solid #2c3f2d;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.product-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-summary-details h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #f2f8f1;
+}
+
+.product-summary-details p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #92a494;
+  line-height: 1.5;
+}
+
+.product-specs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+}
+
+.spec-item {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #142016;
+  border: 1px solid #253727;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.spec-lbl {
+  color: #7b8e7c;
+}
+
+.spec-val {
+  color: #dce7dd;
+  font-weight: 600;
+}
+
+/* Results entrance animation */
+.smartbuy-results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: smartbuy-fade-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes smartbuy-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 9. Recent Comparisons History Card — Product Names ONLY */
+.smartbuy-history-card {
+  padding: 22px 24px;
+  background: linear-gradient(145deg, rgba(18, 27, 19, 0.95), rgba(12, 18, 13, 0.98));
+  border: 1px solid rgba(103, 255, 58, 0.22);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 16px rgba(103, 255, 58, 0.04);
+}
+
+.history-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.history-title {
+  margin: 2px 0 0;
+  font-size: 18px;
+  color: #f2f8f1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.history-count-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #7a8d7c;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(22, 34, 24, 0.6);
+  border: 1px solid #243525;
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+}
+
+.history-tile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #131f15;
+  border: 1px solid #243626;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.history-tile:hover {
+  border-color: #67ff3a;
+  background: #18281b;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 14px rgba(103, 255, 58, 0.1);
+  transform: translateY(-1px);
+}
+
+.history-tile:focus-visible {
+  border-color: #67ff3a;
+  box-shadow: 0 0 0 2px rgba(103, 255, 58, 0.4);
+}
+
+.history-tile-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: rgba(26, 38, 28, 0.85);
+  border: 1px solid #2b3e2d;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.history-item-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #e5eee6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.history-tile:hover .history-item-name {
+  color: #fff;
+}
+
+.history-tile-arrow {
+  font-size: 14px;
+  color: #5a6e5c;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+  font-family: monospace;
+}
+
+.history-tile:hover .history-tile-arrow {
+  color: #67ff3a;
+  transform: translateX(3px);
+}
+
+/* 10. Sticky Bottom Bar on Mobile */
+.smartbuy-sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10, 16, 11, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(103, 255, 58, 0.3);
+  padding: 12px 20px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.sticky-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-store {
+  font-size: 11px;
+  color: #8ea190;
+}
+
+.sticky-price {
+  font-size: 18px;
+  font-weight: 800;
+  color: #67ff3a;
+}
+
+.sticky-deal-btn {
+  padding: 10px 18px;
+  min-height: 44px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 11. Responsive Breakpoints */
+@media (max-width: 900px) {
+  .smartbuy-bar-row {
+    grid-template-columns: 120px 1fr 110px;
+  }
+
+  .product-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-img-box {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 860px) {
+  .smartbuy-input-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .smartbuy-actions-group {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .smartbuy-search-btn {
+    flex: 2;
+  }
+
+  .smartbuy-paste-btn,
+  .smartbuy-sample-btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .smartbuy-sticky-bar {
+    display: flex;
+  }
+
+  .smartbuy-page-wrap {
+    padding-bottom: 70px; /* offset for sticky bar */
+  }
+
+  .smartbuy-bar-row {
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+  }
+
+  .bar-track-wrap {
+    grid-column: 1 / -1;
+  }
+
+  .smartbuy-retailers-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .smartbuy-actions-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .smartbuy-search-btn {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .history-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .verdict-actions-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .smartbuy-ranked-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ranked-card-action {
+    justify-content: space-between;
+  }
+
+  .ranked-buy-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .smartbuy-scan-beam,
+  .smartbuy-pulse-core {
+    animation: none !important;
+  }
+  .bar-fill {
+    transition: none !important;
+  }
+}

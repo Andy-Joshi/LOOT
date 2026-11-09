@@ -1,0 +1,400 @@
+/* ==========================================================================
+   Weekly Budget Card Styles (LEFT THIS WEEK)
+   Prominent, futuristic fintech section for weekly remaining budget cadence
+   ========================================================================== */
+
+.weekly-budget-card {
+  padding: 24px 26px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 90% 10%, rgba(103, 255, 58, 0.08), transparent 45%),
+              linear-gradient(145deg, #131c14, #0d140e);
+  border: 1px solid rgba(103, 255, 58, 0.32);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(103, 255, 58, 0.08);
+  margin-bottom: 20px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.weekly-budget-card.overspent-card {
+  background: radial-gradient(circle at 90% 10%, rgba(255, 77, 109, 0.12), transparent 45%),
+              linear-gradient(145deg, #201316, #140d0f);
+  border-color: rgba(255, 77, 109, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 77, 109, 0.15);
+}
+
+.weekly-budget-card.unconfigured-card {
+  border-style: dashed;
+  border-color: rgba(103, 255, 58, 0.28);
+}
+
+.budget-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.budget-section-heading {
+  margin: 4px 0 0;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #f2f8f1;
+}
+
+.budget-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.budget-status-pill {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.budget-status-pill.active {
+  background: rgba(103, 255, 58, 0.14);
+  border: 1px solid rgba(103, 255, 58, 0.35);
+  color: var(--lime, #67ff3a);
+}
+
+.budget-status-pill.warning {
+  background: rgba(255, 190, 59, 0.16);
+  border: 1px solid rgba(255, 190, 59, 0.4);
+  color: #ffbe3b;
+}
+
+.budget-status-pill.alert {
+  background: rgba(255, 77, 109, 0.16);
+  border: 1px solid rgba(255, 77, 109, 0.45);
+  color: #ff4d6d;
+}
+
+.budget-status-pill.unconfigured {
+  background: rgba(255, 200, 60, 0.14);
+  border: 1px solid rgba(255, 200, 60, 0.35);
+  color: #ffc83c;
+}
+
+.budget-edit-pill-btn {
+  background: rgba(18, 28, 20, 0.85);
+  border: 1px solid rgba(103, 255, 58, 0.3);
+  color: #dce7dc;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.budget-edit-pill-btn:hover {
+  background: rgba(26, 42, 28, 0.95);
+  border-color: var(--lime, #67ff3a);
+  color: #ffffff;
+}
+
+/* Inline Edit Panel */
+.budget-inline-edit-panel {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm, 8px);
+  background: rgba(14, 22, 15, 0.85);
+  border: 1px solid rgba(103, 255, 58, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeInDown 0.2s ease-out;
+}
+
+.edit-kicker {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #9cb09f;
+  font-weight: 700;
+}
+
+/* Preset Buttons */
+.budget-preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.budget-preset-row.mini {
+  margin: 0;
+  gap: 6px;
+}
+
+.budget-preset-chip {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(103, 255, 58, 0.25);
+  background: rgba(20, 32, 22, 0.7);
+  color: #dce7dc;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.budget-preset-chip:hover {
+  background: rgba(30, 48, 33, 0.95);
+  border-color: var(--lime, #67ff3a);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.budget-preset-chip.selected {
+  background: rgba(103, 255, 58, 0.2);
+  border-color: var(--lime, #67ff3a);
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(103, 255, 58, 0.3);
+}
+
+/* Custom Input Forms */
+.budget-custom-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  max-width: 420px;
+}
+
+.budget-custom-form.inline {
+  margin-top: 4px;
+}
+
+.budget-input-prefix {
+  font-size: 20px;
+  color: var(--lime, #67ff3a);
+  font-weight: 800;
+}
+
+.budget-input-field {
+  flex: 1;
+  padding: 9px 12px;
+  border-radius: 7px;
+  border: 1px solid rgba(103, 255, 58, 0.3);
+  background: #0d140e;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  outline: none;
+}
+
+.budget-input-field:focus {
+  border-color: var(--lime, #67ff3a);
+  box-shadow: 0 0 12px rgba(103, 255, 58, 0.25);
+}
+
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 11px;
+}
+
+.budget-set-btn {
+  padding: 9px 18px;
+  font-size: 12px;
+}
+
+.budget-prompt-desc {
+  color: #9cb09f;
+  font-size: 13px;
+  margin: 10px 0 14px;
+  max-width: 580px;
+  line-height: 1.5;
+}
+
+.budget-error-msg {
+  color: #ff4d6d;
+  font-size: 11px;
+  font-family: var(--font-mono, monospace);
+  margin-top: 6px;
+}
+
+/* Primary Hero Display (Big Remaining Number) */
+.budget-hero-display {
+  margin: 16px 0 8px;
+}
+
+.budget-remaining-wrap {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.budget-hero-display .currency-symbol {
+  font-size: 32px;
+  color: var(--lime, #67ff3a);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.budget-hero-display .currency-symbol.overspent {
+  color: #ff4d6d;
+}
+
+.remaining-number {
+  font-size: 42px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.remaining-number.overspent {
+  color: #ff4d6d;
+  text-shadow: 0 0 18px rgba(255, 77, 109, 0.4);
+}
+
+.remaining-sublabel {
+  font-size: 18px;
+  font-weight: 700;
+  color: #9cb09f;
+  letter-spacing: -0.01em;
+  margin-left: 4px;
+}
+
+.remaining-sublabel.overspent {
+  color: #ff758f;
+  font-family: var(--font-mono, monospace);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.overspent-banner {
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: rgba(255, 77, 109, 0.12);
+  border: 1px solid rgba(255, 77, 109, 0.35);
+  color: #ff758f;
+  font-size: 12px;
+  margin: 8px 0 12px;
+}
+
+/* Context Metrics Grid (Weekly budget, Spent, Progress) */
+.budget-context-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 14px 0 10px;
+  border-top: 1px solid rgba(103, 255, 58, 0.12);
+}
+
+.budget-context-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.context-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: #8c9e8e;
+  letter-spacing: 0.05em;
+}
+
+.context-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: #f2f8f1;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: -0.02em;
+}
+
+/* Progress Bar */
+.budget-progress-container {
+  margin: 10px 0 14px;
+}
+
+.budget-progress-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 6px;
+  background: rgba(45, 60, 48, 0.6);
+  border: 1px solid rgba(103, 255, 58, 0.15);
+  overflow: hidden;
+}
+
+.budget-progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+/* Footer */
+.budget-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #8c9e8e;
+  padding-top: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.budget-cycle-note {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: #9cb09f;
+}
+
+.budget-log-btn {
+  background: transparent;
+  border: 1px solid rgba(103, 255, 58, 0.3);
+  color: var(--lime, #67ff3a);
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.budget-log-btn:hover {
+  background: rgba(103, 255, 58, 0.15);
+  border-color: var(--lime, #67ff3a);
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .weekly-budget-card {
+    padding: 18px 18px;
+  }
+  .remaining-number {
+    font-size: 32px;
+  }
+  .budget-context-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .context-value {
+    font-size: 15px;
+  }
+  .budget-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .budget-header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

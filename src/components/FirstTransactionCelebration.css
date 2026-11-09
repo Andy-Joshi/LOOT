@@ -1,0 +1,355 @@
+/* First Transaction Celebration Component Styles */
+.first-tx-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(8, 13, 8, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: firstTxFadeIn 0.25s ease-out;
+}
+
+.first-tx-card {
+  --bg: #16161c;
+  --fg: #d9f5d3;
+  --green: #5fd34a;
+  --btn: #24242c;
+
+  position: relative;
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid #3d543d;
+  border-radius: 18px;
+  padding: 24px 20px 20px;
+  width: min(94vw, 420px);
+  max-height: 92vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(95, 211, 74, 0.18);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.first-tx-card.standalone {
+  box-shadow: none;
+  max-height: none;
+  width: 100%;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .first-tx-card {
+    --bg: #eef3ee;
+    --fg: #1c3a18;
+    --btn: #dce7dc;
+    border-color: #bcd4bc;
+  }
+}
+
+/* Close button */
+.first-tx-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--fg);
+  opacity: 0.6;
+  font-size: 22px;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s, background 0.2s;
+  padding: 0;
+  margin: 0;
+}
+
+.first-tx-close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Header */
+.first-tx-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--green);
+  font-family: 'DM Mono', monospace, monospace;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.first-tx-title {
+  font-size: clamp(20px, 3.5vw, 24px);
+  margin: 0 0 8px;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: var(--fg);
+}
+
+.first-tx-subtitle {
+  font-size: 12px;
+  color: #8aa49a;
+  margin: 0 0 14px;
+  line-height: 1.4;
+}
+
+.first-tx-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(95, 211, 74, 0.1);
+  border: 1px solid rgba(95, 211, 74, 0.25);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--fg);
+  margin-bottom: 12px;
+}
+
+.first-tx-meta-chip strong {
+  color: var(--green);
+}
+
+/* Stage & SVG */
+.first-tx-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 4px 0 8px;
+}
+
+.first-tx-svg {
+  width: min(78vw, 320px);
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+/* Original SVG animations */
+.first-tx-svg .rc {
+  transform-origin: 200px 460px;
+  animation: firstTxDrop .7s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+
+.first-tx-svg .paper {
+  animation: firstTxPrint .8s .3s ease-out both;
+}
+
+.first-tx-svg .dollar {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: firstTxPop .35s steps(4) both;
+}
+
+.first-tx-svg .d1 {
+  animation-delay: 1s;
+}
+
+.first-tx-svg .d2 {
+  animation-delay: 1.15s;
+}
+
+.first-tx-svg .chk,
+.first-tx-svg .chk2 {
+  fill: none;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.first-tx-svg .chk {
+  stroke: #c8f7c0;
+  stroke-width: 26;
+  animation: firstTxDraw .5s 1.5s ease-out forwards, firstTxGlow 1.6s 2s ease-in-out infinite;
+}
+
+.first-tx-svg .chk2 {
+  stroke: #2f9a2a;
+  stroke-width: 26;
+  transform: translate(7px, 9px);
+  animation: firstTxDraw .5s 1.5s ease-out forwards;
+}
+
+.first-tx-svg .pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: firstTxBump .4s 1.95s ease-out both;
+}
+
+.first-tx-svg .sp {
+  fill: var(--green);
+  opacity: 0;
+  animation: firstTxFly .8s 1.95s ease-out forwards;
+}
+
+.first-tx-svg .scan {
+  animation: firstTxScan 2.4s 2s linear infinite;
+  opacity: 0;
+}
+
+/* Buttons */
+.first-tx-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.first-tx-replay-btn {
+  background: var(--btn);
+  color: var(--fg);
+  border: 1px solid var(--green);
+  padding: 10px 18px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.first-tx-replay-btn:hover {
+  background: rgba(95, 211, 74, 0.15);
+  border-color: #7dff6a;
+  transform: translateY(-1px);
+}
+
+.first-tx-continue-btn {
+  background: var(--green);
+  color: #122011;
+  border: 1px solid var(--green);
+  padding: 10px 18px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 1.4;
+}
+
+.first-tx-continue-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Keyframes */
+@keyframes firstTxFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes firstTxDrop {
+  from {
+    transform: translateY(-60px) rotate(-10deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(-4deg);
+    opacity: 1;
+  }
+}
+
+@keyframes firstTxPrint {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 -20px 0);
+  }
+}
+
+@keyframes firstTxPop {
+  0% {
+    opacity: 0;
+    transform: scale(.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes firstTxDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes firstTxGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px #7dff6a);
+  }
+  50% {
+    filter: drop-shadow(0 0 18px #7dff6a);
+  }
+}
+
+@keyframes firstTxBump {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes firstTxFly {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y));
+  }
+}
+
+@keyframes firstTxScan {
+  0% {
+    opacity: .5;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(300px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .first-tx-stage * {
+    animation-duration: .01s !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+  }
+}

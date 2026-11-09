@@ -1,0 +1,91 @@
+/* ==========================================================================
+   SplashScreen Overlay Styles
+   Plays LootLogo intro for ~3s on a black background, then fades out.
+   ========================================================================== */
+
+.loot-splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 45%, #0b0a18, #000000 70%);
+  color: #e8f5e4;
+  opacity: 1;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.loot-splash-screen.fading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loot-splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-width: 560px;
+  width: 100%;
+}
+
+.loot-splash-bar {
+  width: min(44vw, 220px);
+  height: 3px;
+  background: #15171f;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.loot-splash-bar i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #67ff3a, #8a4dff);
+  transform-origin: left;
+  animation: lootSplashFill 3.95s 0.05s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes lootSplashFill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.loot-splash-skip {
+  position: absolute;
+  bottom: 24px;
+  padding: 6px 14px;
+  border: 1px solid rgba(103, 255, 58, 0.35);
+  border-radius: 6px;
+  background: rgba(12, 13, 20, 0.85);
+  color: #8b93a0;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.loot-splash-skip:hover {
+  color: #e8f5e4;
+  border-color: #67ff3a;
+  background: #141622;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loot-splash-screen {
+    transition: opacity 0.1s ease;
+  }
+  .loot-splash-bar i {
+    animation: none !important;
+    transform: scaleX(1);
+  }
+}

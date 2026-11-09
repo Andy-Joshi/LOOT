@@ -1,0 +1,547 @@
+/**
+ * Mr. Spark Interactive Tutor Styles
+ * Scoped styling with LOOT neon design tokens and responsive safe areas
+ */
+
+:root {
+  --spark-neon: #67ff3a;
+  --spark-purple: #8a4dff;
+  --spark-ink: #eaffe0;
+  --spark-bg: rgba(18, 12, 38, 0.97);
+}
+
+/* Fullscreen Dim Backdrop during Intro & Spotlight */
+.spark-dim {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 4, 16, 0.78);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+  z-index: 9000;
+}
+
+.spark-dim.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Spark Container Positioning */
+.spark {
+  position: fixed;
+  z-index: 9500;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  user-select: none;
+  transition: left 0.95s cubic-bezier(0.6, -0.3, 0.25, 1.3),
+              top 0.95s cubic-bezier(0.6, -0.3, 0.25, 1.3),
+              width 0.95s cubic-bezier(0.5, 0, 0.3, 1),
+              opacity 0.4s ease;
+}
+
+.spark.hidden {
+  display: none !important;
+}
+
+/* Dock Mode: Bottom Right */
+.spark.dock {
+  width: 92px;
+  height: 104px;
+  right: 20px;
+  bottom: 24px;
+}
+
+/* On mobile, lift above the 58px bottom nav */
+@media (max-width: 768px) {
+  .spark.dock {
+    width: 76px;
+    height: 86px;
+    right: 14px;
+    bottom: calc(58px + env(safe-area-inset-bottom, 0px) + 14px);
+  }
+}
+
+/* Intro Mode: Centered in Viewport */
+.spark.intro {
+  width: min(60vw, 240px);
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -45%);
+}
+
+/* Flying Mode (Transitioning from intro to dock) */
+.spark.flying .char {
+  animation: sparkFly 0.95s ease-in-out;
+}
+.spark.flying .capeL,
+.spark.flying .capeR {
+  animation-duration: 0.14s !important;
+}
+
+/* SVG Character Artwork */
+.char {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 8px 16px rgba(103, 255, 58, 0.28));
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.spark:hover .char {
+  filter: drop-shadow(0 0 16px rgba(103, 255, 58, 0.5)) drop-shadow(0 0 24px rgba(138, 77, 255, 0.35));
+}
+
+.spark:focus-visible .char {
+  filter: drop-shadow(0 0 12px #fff);
+}
+
+/* Speech Bubble */
+.spark-bub {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  opacity: 0;
+  transform: translateY(8px) scale(0.92);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--spark-bg);
+  border: 1.5px solid var(--spark-neon);
+  border-radius: 16px;
+  padding: 14px 16px;
+  color: var(--spark-ink);
+  font: 600 14px/1.45 system-ui, -apple-system, sans-serif;
+  box-shadow: 0 0 24px rgba(103, 255, 58, 0.32), 0 8px 32px rgba(0, 0, 0, 0.6);
+  width: max-content;
+  max-width: min(86vw, 320px);
+  cursor: default;
+  z-index: 9550;
+}
+
+.spark-bub.on {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Speech Bubble Arrow */
+.spark-bub::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
+  background: #120c26;
+  border-right: 1.5px solid var(--spark-neon);
+  border-bottom: 1.5px solid var(--spark-neon);
+  transform: rotate(45deg);
+}
+
+.spark.intro .spark-bub {
+  left: 50%;
+  transform: translateX(-50%) translateY(8px) scale(0.92);
+}
+.spark.intro .spark-bub.on {
+  transform: translateX(-50%);
+}
+.spark.intro .spark-bub::after {
+  left: calc(50% - 6px);
+}
+
+.spark.dock .spark-bub {
+  right: 6px;
+  max-width: min(82vw, 300px);
+}
+.spark.dock .spark-bub::after {
+  right: 32px;
+}
+
+/* Speech Bubble Header & Text */
+.spark-bub-kicker {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--spark-neon);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.spark-bub-kicker .spark-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--spark-neon);
+  box-shadow: 0 0 8px var(--spark-neon);
+  animation: sparkPulse 1.5s infinite;
+}
+
+.spark-bub-text {
+  word-break: break-word;
+  white-space: pre-wrap;
+  color: #f0fff1;
+}
+
+/* Action Buttons Inside Speech Bubble */
+.spark-bub-btns {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.spark-btn {
+  background: transparent;
+  color: var(--spark-ink);
+  border: 1px solid var(--spark-neon);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font: 700 13px system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.spark-btn:hover {
+  background: rgba(103, 255, 58, 0.15);
+  transform: translateY(-1px);
+}
+
+.spark-btn.primary {
+  background: var(--spark-neon);
+  color: #08210a;
+  border-color: var(--spark-neon);
+  box-shadow: 0 0 12px rgba(103, 255, 58, 0.4);
+}
+
+.spark-btn.primary:hover {
+  background: #84ff5e;
+  box-shadow: 0 0 18px rgba(103, 255, 58, 0.6);
+}
+
+.spark-btn.secondary {
+  border-color: rgba(138, 77, 255, 0.5);
+  color: #d1b3ff;
+}
+
+.spark-btn.secondary:hover {
+  background: rgba(138, 77, 255, 0.18);
+  border-color: var(--spark-purple);
+}
+
+/* Contextual Help Menu Drawer */
+.spark-help-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.spark-help-menu::-webkit-scrollbar {
+  width: 4px;
+}
+.spark-help-menu::-webkit-scrollbar-thumb {
+  background: rgba(103, 255, 58, 0.3);
+  border-radius: 4px;
+}
+
+.spark-help-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(103, 255, 58, 0.2);
+  border-radius: 8px;
+  color: #eaffe0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.spark-help-item:hover {
+  background: rgba(103, 255, 58, 0.12);
+  border-color: var(--spark-neon);
+  transform: translateX(2px);
+}
+
+.spark-help-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.spark-help-desc {
+  font-size: 11px;
+  font-weight: 500;
+  color: #a8b8aa;
+  margin-top: 2px;
+}
+
+/* Shockwave & Particle Bursts */
+.spark-rng {
+  position: fixed;
+  border: 3px solid var(--spark-neon);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9600;
+  transform: translate(-50%, -50%);
+  animation: sparkRng 0.8s ease-out forwards;
+}
+
+.spark-bp {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 9600;
+  animation: sparkBp 0.9s ease-out forwards;
+}
+
+@keyframes sparkBp {
+  to {
+    transform: translate(var(--x), var(--y)) rotate(200deg) scale(0.2);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkRng {
+  from {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+  }
+  to {
+    width: 360px;
+    height: 360px;
+    opacity: 0;
+  }
+}
+
+/* Character Body Part Animations */
+.bobg {
+  animation: sparkFl 3s ease-in-out infinite;
+}
+.capeL {
+  transform-origin: 112px 178px;
+  animation: sparkCl 1.3s ease-in-out infinite alternate;
+}
+.capeR {
+  transform-origin: 190px 180px;
+  animation: sparkCr 1.5s ease-in-out infinite alternate;
+}
+.legL {
+  transform-origin: 110px 204px;
+  animation: sparkLg 1.2s ease-in-out infinite alternate;
+}
+.legR {
+  transform-origin: 190px 204px;
+  animation: sparkLg 1.2s -0.6s ease-in-out infinite alternate;
+}
+.eyes, .mouth, .fl2, .bars rect, .ring, .crown, .tri {
+  transform-box: fill-box;
+}
+.eyes {
+  transform-origin: center;
+  animation: sparkBl 4.4s infinite;
+}
+.armL {
+  transform-origin: 74px 152px;
+  animation: sparkAl 2s ease-in-out infinite alternate;
+}
+.armR {
+  transform-origin: 226px 154px;
+  animation: sparkAr 2.4s ease-in-out infinite alternate;
+}
+.topcoin {
+  animation: sparkTc 2.4s ease-in-out infinite alternate;
+}
+.fcoin {
+  animation: sparkFl 2.6s -1s ease-in-out infinite;
+}
+.flip {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sparkFlip 2.2s ease-in-out infinite;
+}
+.mouth {
+  transform-origin: 50% 0;
+}
+.crown {
+  transform-origin: center;
+  animation: sparkCw 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 5px #ffd84a);
+}
+.bars rect {
+  transform-origin: 50% 100%;
+  animation: sparkBr 2s ease-in-out infinite;
+}
+.bars rect:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.bars rect:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.tri {
+  transform-origin: center;
+  animation: sparkTw 1.6s ease-in-out infinite alternate;
+}
+.ring {
+  transform-origin: center;
+  animation: sparkRg 2.4s ease-in-out infinite;
+}
+
+/* Mood Classes */
+.spark-wave .armR {
+  animation: sparkAw 0.5s ease-in-out infinite alternate !important;
+}
+.spark-cheer .armR {
+  animation: sparkAc 0.4s ease-in-out infinite alternate !important;
+}
+.spark-cheer .armL {
+  animation: sparkAcl 0.4s ease-in-out infinite alternate !important;
+}
+.spark-cheer .bobg {
+  animation: sparkJp 0.6s ease-out 2 !important;
+}
+.spark-talk .mouth {
+  animation: sparkTk 0.2s ease-in-out infinite alternate !important;
+}
+.glow {
+  filter: drop-shadow(0 0 5px #67ff3a);
+}
+
+/* Keyframes */
+@keyframes sparkFl {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes sparkCl {
+  to { transform: rotate(-8deg) scale(1.03); }
+}
+@keyframes sparkCr {
+  to { transform: rotate(7deg); }
+}
+@keyframes sparkLg {
+  from { transform: rotate(4deg); }
+  to { transform: rotate(-6deg) translateY(-3px); }
+}
+@keyframes sparkBl {
+  0%, 93%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.08); }
+}
+@keyframes sparkAl {
+  to { transform: rotate(-5deg); }
+}
+@keyframes sparkAr {
+  to { transform: rotate(7deg); }
+}
+@keyframes sparkAw {
+  from { transform: rotate(-62deg); }
+  to { transform: rotate(-38deg); }
+}
+@keyframes sparkAc {
+  from { transform: rotate(-110deg); }
+  to { transform: rotate(-88deg); }
+}
+@keyframes sparkAcl {
+  from { transform: rotate(20deg); }
+  to { transform: rotate(36deg); }
+}
+@keyframes sparkJp {
+  0% { transform: translateY(0); }
+  35% { transform: translateY(-40px) scale(0.95, 1.08); }
+  70% { transform: translateY(0) scale(1.08, 0.9); }
+  100% { transform: none; }
+}
+@keyframes sparkTk {
+  from { transform: scaleY(1); }
+  to { transform: scaleY(0.35); }
+}
+@keyframes sparkTc {
+  to { transform: translateY(-4px); }
+}
+@keyframes sparkFlip {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.12); }
+}
+@keyframes sparkCw {
+  from { transform: translateY(0) rotate(-3deg); }
+  to { transform: translateY(-5px) rotate(3deg); }
+}
+@keyframes sparkBr {
+  0%, 100% { transform: scaleY(0.45); }
+  50% { transform: scaleY(1); }
+}
+@keyframes sparkTw {
+  from { opacity: 0.4; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1.1); }
+}
+@keyframes sparkRg {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+@keyframes sparkFly {
+  0% { transform: rotate(0); }
+  30% { transform: rotate(-24deg) scale(1.05); }
+  70% { transform: rotate(-12deg) scale(0.75); }
+  100% { transform: none; }
+}
+@keyframes sparkPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ==========================================================================
+   INTERACTIVE TOUR SPOTLIGHT & HIGHLIGHT BOX
+   ========================================================================== */
+.spark-target-highlight {
+  position: absolute;
+  pointer-events: none;
+  z-index: 8900;
+  border: 2px solid var(--spark-neon);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(103, 255, 58, 0.45), inset 0 0 15px rgba(103, 255, 58, 0.15);
+  animation: sparkHighlightPulse 2s ease-in-out infinite alternate;
+  transition: all 0.35s ease;
+}
+
+@keyframes sparkHighlightPulse {
+  0% {
+    border-color: rgba(103, 255, 58, 0.6);
+    box-shadow: 0 0 14px rgba(103, 255, 58, 0.35);
+  }
+  100% {
+    border-color: rgba(103, 255, 58, 1);
+    box-shadow: 0 0 28px rgba(103, 255, 58, 0.7), inset 0 0 20px rgba(103, 255, 58, 0.25);
+  }
+}
+
+/* Prefers Reduced Motion A11y */
+@media (prefers-reduced-motion: reduce) {
+  .char * {
+    animation: none !important;
+  }
+  .spark {
+    transition: none !important;
+  }
+  .spark-dim {
+    transition: none !important;
+  }
+  .spark-rng,
+  .spark-bp {
+    display: none !important;
+  }
+}

@@ -1,0 +1,678 @@
+/* =========================================================
+   REWARDS VAULT (REDESIGN)
+   Distinct Card States (Locked, Affordable, Owned),
+   Rarity Colors (Common, Rare, Epic), Featured Banner,
+   Filter Chips, Card Hover Lift & Tilt, Confetti Burst.
+   ========================================================= */
+
+.rewards-vault-container {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+/* 1. Header */
+.rewards-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.rewards-head h2 {
+  margin: 4px 0 6px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #f7faf7;
+}
+
+.rewards-subhead {
+  margin: 0;
+  font-size: 14px;
+  color: #9cb09f;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.rewards-vault-balance-pill {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm, 10px);
+  background: linear-gradient(135deg, rgba(19, 28, 20, 0.9), rgba(13, 20, 14, 0.95));
+  border: 1px solid rgba(103, 255, 58, 0.28);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.vault-balance-label {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 10px;
+  font-weight: 700;
+  color: #8c9e8e;
+  letter-spacing: 0.08em;
+}
+
+/* 2. Featured Reward Banner */
+.featured-reward-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md, 16px);
+  padding: 24px;
+  background: linear-gradient(145deg, rgba(20, 28, 21, 0.95), rgba(12, 17, 13, 0.98));
+  border: 1px solid rgba(103, 255, 58, 0.3);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.featured-reward-banner.rarity-common {
+  border-color: rgba(103, 255, 58, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(103, 255, 58, 0.12);
+}
+
+.featured-reward-banner.rarity-rare {
+  border-color: rgba(138, 77, 255, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(138, 77, 255, 0.15);
+}
+
+.featured-reward-banner.rarity-epic {
+  border-color: rgba(255, 190, 38, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 190, 38, 0.15);
+}
+
+.featured-banner-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.featured-badge-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.featured-kicker {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--lime);
+}
+
+.featured-icon-box {
+  width: 76px;
+  height: 76px;
+  border-radius: 16px;
+  background: rgba(18, 26, 19, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.featured-icon {
+  font-size: 34px;
+}
+
+.featured-content-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.featured-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.featured-item-badge {
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #c9d8cb;
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.featured-price-tag {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--lime);
+}
+
+.featured-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f7faf7;
+}
+
+.featured-desc {
+  margin: 0;
+  font-size: 13px;
+  color: #9cb09f;
+  line-height: 1.45;
+}
+
+.featured-progress-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(35, 48, 36, 0.6);
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.featured-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #67ff3a, #8a4dff);
+  box-shadow: 0 0 10px rgba(103, 255, 58, 0.4);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featured-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.featured-progress-ratio {
+  font-size: 12px;
+  color: #8c9e8e;
+}
+
+.featured-unlocked-tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--lime);
+}
+
+.featured-unlock-btn {
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.featured-away-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffbe26;
+}
+
+/* 3. Filter Chips */
+.rewards-filter-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.filter-chip {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(18, 26, 19, 0.85);
+  border: 1px solid rgba(103, 255, 58, 0.16);
+  color: #9cb09f;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.filter-chip:hover {
+  background: rgba(28, 40, 30, 0.9);
+  color: #f0f4f0;
+  border-color: rgba(103, 255, 58, 0.35);
+}
+
+.filter-chip.active {
+  background: rgba(103, 255, 58, 0.18);
+  border-color: var(--lime);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(103, 255, 58, 0.3);
+}
+
+/* 4. Responsive Grid: 3 col desktop, 2 col tablet, 1 col mobile */
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  width: 100%;
+}
+
+/* 5. Reward Card Base */
+.reward-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: var(--radius-md, 14px);
+  background: linear-gradient(145deg, rgba(20, 29, 21, 0.88), rgba(12, 18, 13, 0.95));
+  border: 1px solid rgba(103, 255, 58, 0.18);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Hover Lift and Subtle Tilt */
+.reward-card:hover {
+  transform: translateY(-5px) scale(1.012);
+}
+
+/* Rarity Colors */
+.reward-card.rarity-common {
+  border-color: rgba(103, 255, 58, 0.25);
+}
+.reward-card.rarity-common:hover {
+  border-color: rgba(103, 255, 58, 0.55);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(103, 255, 58, 0.18);
+}
+
+.reward-card.rarity-rare {
+  border-color: rgba(138, 77, 255, 0.35);
+}
+.reward-card.rarity-rare:hover {
+  border-color: rgba(138, 77, 255, 0.65);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7), 0 0 24px rgba(138, 77, 255, 0.22);
+}
+
+.reward-card.rarity-epic {
+  border-color: rgba(255, 190, 38, 0.35);
+}
+.reward-card.rarity-epic:hover {
+  border-color: rgba(255, 190, 38, 0.65);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7), 0 0 24px rgba(255, 190, 38, 0.22);
+}
+
+/* Rarity Tags */
+.rarity-tag {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.08em;
+}
+
+.rarity-tag.common {
+  background: rgba(103, 255, 58, 0.16);
+  border: 1px solid rgba(103, 255, 58, 0.35);
+  color: var(--lime);
+}
+
+.rarity-tag.rare {
+  background: rgba(138, 77, 255, 0.2);
+  border: 1px solid rgba(138, 77, 255, 0.45);
+  color: #ccaeff;
+}
+
+.rarity-tag.epic {
+  background: rgba(255, 190, 38, 0.2);
+  border: 1px solid rgba(255, 190, 38, 0.45);
+  color: #ffcf54;
+}
+
+/* Shimmer Sweep Effect for Affordable Cards */
+.shimmer-sweep {
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 220%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(103, 255, 58, 0.08) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  animation: sweepAnim 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes sweepAnim {
+  0% { transform: translate(-30%, -30%); }
+  100% { transform: translate(30%, 30%); }
+}
+
+/* 6. Card State: AFFORDABLE */
+.reward-card.state-affordable {
+  border-color: rgba(103, 255, 58, 0.42);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 18px rgba(103, 255, 58, 0.12);
+}
+
+/* 7. Card State: LOCKED (dimmed, subtle progress) */
+.reward-card.state-locked {
+  opacity: 0.82;
+  background: linear-gradient(145deg, rgba(16, 22, 17, 0.85), rgba(10, 14, 11, 0.92));
+}
+
+.reward-card.state-locked:hover {
+  opacity: 0.95;
+}
+
+/* 8. Card State: OWNED */
+.reward-card.state-owned {
+  background: linear-gradient(145deg, rgba(18, 27, 20, 0.9), rgba(12, 18, 13, 0.95));
+  border-color: rgba(103, 255, 58, 0.25);
+}
+
+/* Card Top Section */
+.reward-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.reward-icon-wrap {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(18, 26, 19, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  place-items: center;
+}
+
+.reward-item-icon {
+  font-size: 26px;
+}
+
+.lock-overlay {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  font-size: 14px;
+  background: rgba(10, 15, 11, 0.9);
+  border-radius: 50%;
+  padding: 2px;
+  line-height: 1;
+}
+
+.check-overlay {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--lime);
+  background: #112413;
+  border: 1px solid var(--lime);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+
+.reward-tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.reward-category-badge {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 9px;
+  font-weight: 700;
+  color: #9cb09f;
+  letter-spacing: 0.05em;
+}
+
+/* Card Content */
+.reward-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.reward-item-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f7faf7;
+  line-height: 1.25;
+}
+
+.reward-item-desc {
+  margin: 0;
+  font-size: 13px;
+  color: #9cb09f;
+  line-height: 1.45;
+}
+
+/* Card Bottom */
+.reward-card-bottom {
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reward-cost {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.reward-cost.locked {
+  color: #8c9e8e;
+}
+
+.reward-cost.owned {
+  color: #8c9e8e;
+}
+
+/* 1. Owned State Bottom */
+.bottom-owned-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.owned-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: rgba(103, 255, 58, 0.14);
+  border: 1px solid rgba(103, 255, 58, 0.32);
+  color: var(--lime);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* 2. Affordable State Bottom */
+.bottom-affordable-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.unlock-action-btn {
+  padding: 9px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+/* 3. Locked State Bottom */
+.bottom-locked-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.locked-cost-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.need-more-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #a4b6a5;
+}
+
+.locked-progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(35, 48, 36, 0.65);
+  overflow: hidden;
+}
+
+.locked-progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #67ff3a, #8a4dff);
+  transition: width 0.4s ease;
+}
+
+.locked-ratio-sub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #7b8e7d;
+  font-family: var(--font-mono, 'DM Mono', monospace);
+}
+
+/* Unlock Pop / Burst Animation */
+.reward-card.just-unlocked {
+  animation: cardUnlockPop 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cardUnlockPop {
+  0% { transform: scale(0.96) rotateY(0deg); }
+  40% { transform: scale(1.05) rotateY(180deg); }
+  100% { transform: scale(1) rotateY(360deg); }
+}
+
+/* Confetti Burst Overlay */
+.card-confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+}
+
+.confetti-particle {
+  position: absolute;
+  border-radius: 2px;
+  animation: explodeConfetti 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes explodeConfetti {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(0.4);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .rewards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .rewards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .featured-banner-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .featured-badge-col {
+    flex-direction: row;
+    gap: 14px;
+  }
+
+  .featured-reward-banner {
+    padding: 16px;
+  }
+
+  .featured-status-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .featured-unlock-btn {
+    width: 100%;
+  }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .reward-card,
+  .featured-reward-banner {
+    transition: none !important;
+  }
+
+  .reward-card:hover {
+    transform: none !important;
+  }
+
+  .shimmer-sweep {
+    animation: none !important;
+    display: none !important;
+  }
+
+  .reward-card.just-unlocked {
+    animation: none !important;
+  }
+
+  .confetti-particle {
+    animation: none !important;
+    display: none !important;
+  }
+}

@@ -1,0 +1,241 @@
+/* ==========================================================================
+   Level Up Takeover Overlay Styles
+   Neon Arcade full-screen takeover with badge slam-in and XP bar fill
+   ========================================================================== */
+
+.levelup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 50%, #15092a, #05040a 80%);
+  backdrop-filter: blur(16px);
+  animation: levelupFadeIn 0.3s ease-out both;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@keyframes levelupFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.levelup-modal {
+  position: relative;
+  width: min(92vw, 480px);
+  background: radial-gradient(circle at 50% 30%, #201040, #0a0715 85%);
+  border: 1.5px solid #8a4dff;
+  border-radius: 24px;
+  padding: 38px 28px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 0 50px rgba(138, 77, 255, 0.4), 0 25px 80px rgba(0, 0, 0, 0.9);
+}
+
+.levelup-kicker {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 800;
+  color: #67ff3a;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px #67ff3a;
+}
+
+/* Badge Slam-In Animation */
+.levelup-badge-wrapper {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 16px 0 20px;
+  display: grid;
+  place-items: center;
+}
+
+.levelup-badge {
+  position: relative;
+  z-index: 2;
+  width: 110px;
+  height: 110px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #67ff3a, #8a4dff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #061007;
+  box-shadow: 0 0 35px rgba(103, 255, 58, 0.6), 0 10px 30px rgba(0, 0, 0, 0.7);
+  animation: badgeSlamIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes badgeSlamIn {
+  0% {
+    transform: scale(3.5) rotate(-25deg);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  60% {
+    transform: scale(0.9) rotate(4deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  80% {
+    transform: scale(1.08) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+.levelup-badge-icon {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.levelup-badge-lvl {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #061107;
+  margin-top: 4px;
+}
+
+/* Sound Wave Ring Ripples */
+.levelup-ripple {
+  position: absolute;
+  inset: -10px;
+  border: 2px solid #8a4dff;
+  border-radius: 36px;
+  animation: levelupRipple 1.6s 0.3s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+  opacity: 0;
+}
+
+@keyframes levelupRipple {
+  0% { transform: scale(0.85); opacity: 0.9; border-color: #67ff3a; }
+  100% { transform: scale(1.6); opacity: 0; border-color: #8a4dff; }
+}
+
+.levelup-title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+}
+
+.levelup-rank-title {
+  margin: 6px 0 18px;
+  color: #c9a8ff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* XP Bar Fill Takeover */
+.levelup-xp-box {
+  width: 100%;
+  background: rgba(14, 10, 28, 0.85);
+  border: 1px solid rgba(138, 77, 255, 0.35);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 22px;
+  box-sizing: border-box;
+}
+
+.levelup-xp-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #a4b8a6;
+}
+
+.levelup-xp-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 6px;
+  background: #17102b;
+  overflow: hidden;
+  border: 1px solid rgba(138, 77, 255, 0.3);
+}
+
+.levelup-xp-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #8a4dff, #67ff3a);
+  box-shadow: 0 0 16px #67ff3a;
+  animation: levelupXpFill 1.4s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes levelupXpFill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.levelup-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.levelup-perk-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(103, 255, 58, 0.08);
+  border: 1px solid rgba(103, 255, 58, 0.2);
+  color: #dcefdc;
+  font-size: 13px;
+  text-align: left;
+}
+
+.levelup-perk-item span {
+  color: #67ff3a;
+  font-weight: 800;
+}
+
+.levelup-button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 0;
+  font-size: 15px;
+  font-weight: 800;
+  color: #061107;
+  background: var(--lime);
+  box-shadow: 0 0 25px rgba(103, 255, 58, 0.5);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.levelup-button:hover {
+  background: #7dff56;
+  box-shadow: 0 0 35px rgba(103, 255, 58, 0.7);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .levelup-badge {
+    animation: none !important;
+  }
+  .levelup-ripple {
+    display: none !important;
+  }
+  .levelup-xp-fill {
+    animation: none !important;
+    width: 100% !important;
+  }
+}

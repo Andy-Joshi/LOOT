@@ -1,0 +1,335 @@
+/* ==========================================================================
+   LootLogo Scoped Styles & Animations
+   Exact timings ported from original Loot SVG+CSS animation specification
+   Supports: intro (splash ~3s) & loop (continuous dashboard)
+   ========================================================================== */
+
+.loot-logo {
+  --g: #67ff3a;
+  --p: #8a4dff;
+  display: block;
+  overflow: visible;
+  user-select: none;
+}
+
+/* Shared logo parts */
+.loot-logo-ring {
+  fill: none;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.loot-logo-cm {
+  fill: none;
+  stroke: #e9ffdc;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 0.2 3;
+  stroke-dashoffset: 0.2;
+  opacity: 0;
+}
+
+.loot-logo-ltr {
+  fill: #fff;
+  transform-box: fill-box;
+}
+
+.loot-logo-slash {
+  fill: var(--g);
+  transform-box: fill-box;
+  transform-origin: left center;
+}
+
+.loot-logo-rup {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lootLogoTick 4.2s calc(var(--d, 0s) + 1s) ease-in-out infinite;
+}
+
+.loot-logo-halo,
+.loot-logo-burst {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.loot-logo-tw {
+  transform-box: fill-box;
+  transform-origin: center;
+  fill: #caffb8;
+  animation: lootLogoTw 2.8s calc(var(--d, 0s) + var(--t, 0s)) ease-in-out infinite;
+  opacity: 0;
+}
+
+.loot-logo-mark {
+  animation: lootLogoGlow 3.4s var(--d, 0s) ease-in-out infinite;
+}
+
+.loot-logo-fa {
+  animation: lootLogoFa 3.8s var(--d, 0s) ease-in-out infinite;
+}
+
+.loot-logo-fb {
+  animation: lootLogoFb 3.8s var(--d, 0s) ease-in-out infinite;
+}
+
+.loot-logo-halo {
+  animation: lootLogoHal 3.6s var(--d, 0s) ease-in-out infinite;
+}
+
+.loot-logo-shw {
+  animation: lootLogoSh 5.5s calc(var(--d, 0s) + 0.6s) linear infinite;
+}
+
+.loot-logo-cf {
+  animation: lootLogoCf 4s calc(var(--d, 0s) + 0.2s) linear infinite;
+}
+
+.loot-logo-cb {
+  animation: lootLogoCb 4s calc(var(--d, 0s) + 0.2s) linear infinite;
+}
+
+.loot-logo-burst {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Intro (Splash) Mode Animations
+   ========================================================================== */
+.loot-logo.intro .loot-logo-halo {
+  opacity: 0;
+  animation: lootLogoHin 1.4s 0.2s both, lootLogoHal 3.6s var(--d, 2.8s) ease-in-out infinite;
+}
+
+.loot-logo.intro .loot-logo-ring {
+  stroke-dashoffset: 1;
+  animation: lootLogoDraw 0.9s 0.1s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+}
+
+.loot-logo.intro .loot-logo-inb {
+  opacity: 0;
+  animation: lootLogoInb 0.85s 0.35s cubic-bezier(0.2, 1.3, 0.4, 1) forwards;
+}
+
+.loot-logo.intro .loot-logo-inf {
+  opacity: 0;
+  animation: lootLogoInf 0.85s 0.5s cubic-bezier(0.2, 1.3, 0.4, 1) forwards;
+}
+
+.loot-logo.intro .loot-logo-rup {
+  transform: scale(0);
+  animation: lootLogoPop 0.6s 1s cubic-bezier(0.2, 1.8, 0.4, 1) forwards, lootLogoTick 4.2s calc(var(--d, 2.8s) + 1s) ease-in-out infinite;
+}
+
+.loot-logo.intro .loot-logo-burst {
+  animation: lootLogoBurst 1s 1s ease-out both;
+}
+
+.loot-logo.intro .loot-logo-ltr {
+  opacity: 0;
+  animation: lootLogoRise 0.6s cubic-bezier(0.2, 1.6, 0.4, 1) calc(1.15s + var(--i, 0) * 0.12s) forwards;
+}
+
+.loot-logo.intro .loot-logo-slash {
+  opacity: 0;
+  animation: lootLogoWipe 0.45s 1.85s ease-out forwards;
+}
+
+/* Keyframes */
+@keyframes lootLogoDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes lootLogoHin {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lootLogoHal {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.07);
+  }
+}
+
+@keyframes lootLogoInb {
+  from {
+    transform: translate(-70px, 50px) rotate(-30deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes lootLogoInf {
+  from {
+    transform: translate(70px, 40px) rotate(25deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes lootLogoPop {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lootLogoBurst {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(9);
+  }
+}
+
+@keyframes lootLogoRise {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes lootLogoWipe {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+    filter: brightness(2);
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+    filter: none;
+  }
+}
+
+@keyframes lootLogoFa {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  50% {
+    transform: translate(-1px, -4px) rotate(-1.4deg);
+  }
+}
+
+@keyframes lootLogoFb {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  50% {
+    transform: translate(1px, 3px) rotate(1.2deg);
+  }
+}
+
+@keyframes lootLogoTick {
+  0%, 86%, 100% {
+    transform: scale(1);
+  }
+  92% {
+    transform: scale(1.16);
+  }
+}
+
+@keyframes lootLogoGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px rgba(103, 255, 58, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 9px rgba(138, 77, 255, 0.6));
+  }
+}
+
+@keyframes lootLogoSh {
+  0%, 55% {
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(300px);
+  }
+}
+
+@keyframes lootLogoTw {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+@keyframes lootLogoCf {
+  0% {
+    stroke-dashoffset: 0.2;
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: -1;
+    opacity: 1;
+  }
+  50.01%, 100% {
+    stroke-dashoffset: -1;
+    opacity: 0;
+  }
+}
+
+@keyframes lootLogoCb {
+  0%, 49.99% {
+    stroke-dashoffset: 0.2;
+    opacity: 0;
+  }
+  50% {
+    stroke-dashoffset: 0.2;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -1;
+    opacity: 1;
+  }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .loot-logo-mark,
+  .loot-logo-fa,
+  .loot-logo-fb,
+  .loot-logo-rup,
+  .loot-logo-halo,
+  .loot-logo-shw,
+  .loot-logo-cf,
+  .loot-logo-cb,
+  .loot-logo-tw {
+    animation: none !important;
+  }
+  .loot-logo.intro * {
+    animation-duration: 0.01s !important;
+    animation-delay: 0s !important;
+  }
+}

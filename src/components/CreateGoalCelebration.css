@@ -1,0 +1,685 @@
+/* ==========================================================================
+   Create Goal Celebration Animation Styles
+   Exact CSS port from the uploaded Create a Goal HTML animation specification
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,800&display=swap');
+
+.goal-celebration-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(5, 5, 8, 0.88);
+  backdrop-filter: blur(10px);
+  animation: goalOverlayFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  box-sizing: border-box;
+}
+
+@keyframes goalOverlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.goal-celebration-modal {
+  position: relative;
+  width: min(94vw, 490px);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: radial-gradient(ellipse at 50% 38%, #100b22, #07060e 75%);
+  border: 1px solid #2a2046;
+  border-radius: 20px;
+  padding: 24px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.85), 0 0 45px rgba(138, 77, 255, 0.22);
+  animation: goalModalPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  color: #e8f5e4;
+  text-align: center;
+}
+
+@keyframes goalModalPop {
+  from {
+    transform: scale(0.92) translateY(18px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.goal-celebration-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #352b57;
+  border-radius: 50%;
+  background: rgba(18, 15, 34, 0.65);
+  color: #a29bb8;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.goal-celebration-close:hover {
+  color: #fff;
+  border-color: #67ff3a;
+  background: #1e173a;
+  transform: rotate(90deg);
+}
+
+/* SVG stage and scaling */
+.goal-celebration-stage {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  justify-content: center;
+}
+
+.goal-celebration-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+/* ==========================================================================
+   SVG Scoped Animation Classes from Specification
+   ========================================================================== */
+.cga-t1 {
+  font: italic 800 34px/1 'Poppins', system-ui, sans-serif;
+}
+
+.cga-t2 {
+  font: italic 800 46px/1 'Poppins', system-ui, sans-serif;
+}
+
+.cga-text,
+.cga-tl,
+.cga-bar,
+.cga-halo,
+.cga-pb,
+.cga-tab,
+.cga-chk,
+.cga-rp {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.cga-bar {
+  transform-origin: left center;
+}
+
+.cga-tl {
+  opacity: 0;
+  animation: cgaTin 0.75s calc(2s + var(--i, 0) * 0.06s) cubic-bezier(0.2, 1.8, 0.4, 1) forwards,
+             cgaWave 2.6s calc(var(--d, 3.6s) + var(--i, 0) * 0.1s) ease-in-out infinite;
+}
+
+.cga-tl.cga-t1 {
+  fill: #f3f1ff;
+  filter: drop-shadow(0 0 4px rgba(190, 170, 255, 0.45));
+}
+
+.cga-tl.cga-t2 {
+  filter: drop-shadow(0 0 8px rgba(103, 255, 58, 0.6));
+}
+
+.cga-halo {
+  opacity: 0;
+  animation: cgaHin 1.4s 0.1s both, cgaHal 3.6s var(--d, 3.6s) ease-in-out infinite;
+}
+
+.cga-ring {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: cgaDraw 1s 0.1s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+}
+
+.cga-cm {
+  fill: none;
+  stroke: #eaffdc;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 0.2 3;
+  stroke-dashoffset: 0.2;
+  opacity: 0;
+}
+
+.cga-cf {
+  animation: cgaCf 4.2s calc(var(--d, 3.6s) + 0.2s) linear infinite;
+}
+
+.cga-cb {
+  animation: cgaCb 4.2s calc(var(--d, 3.6s) + 0.2s) linear infinite;
+}
+
+.cga-shake {
+  transform-origin: 200px 200px;
+  animation: cgaShake 0.5s 1.95s ease-out;
+}
+
+.cga-mark {
+  animation: cgaGlow 3.4s var(--d, 3.6s) ease-in-out infinite;
+}
+
+.cga-cin {
+  opacity: 0;
+  animation: cgaCin 1s 0.2s cubic-bezier(0.2, 1.5, 0.4, 1) forwards;
+}
+
+.cga-cfl {
+  animation: cgaFa 4s var(--d, 3.6s) ease-in-out infinite;
+}
+
+.cga-tab {
+  opacity: 0;
+  animation: cgaTab 0.55s 0.85s cubic-bezier(0.2, 2, 0.4, 1) forwards;
+}
+
+.cga-row {
+  opacity: 0;
+  animation: cgaRow 0.5s calc(1s + var(--i, 0) * 0.22s) cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
+}
+
+.cga-bar {
+  transform: scaleX(0);
+  animation: cgaWipe 0.45s calc(1.15s + var(--i, 0) * 0.22s) ease-out forwards;
+}
+
+.cga-chk {
+  fill: none;
+  stroke: #9dff6a;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.cga-k1 {
+  animation: cgaDraw 0.4s 1.4s ease-out forwards;
+}
+
+.cga-k2 {
+  animation: cgaCyc 8s calc(var(--d, 3.6s) + 0.6s) ease-in-out infinite;
+}
+
+.cga-k3 {
+  animation: cgaCyc 8s calc(var(--d, 3.6s) + 1.8s) ease-in-out infinite;
+}
+
+.cga-bx2 {
+  animation: cgaBxc 8s calc(var(--d, 3.6s) + 0.6s) ease-in-out infinite;
+}
+
+.cga-bx3 {
+  animation: cgaBxc 8s calc(var(--d, 3.6s) + 1.8s) ease-in-out infinite;
+}
+
+.cga-pin {
+  opacity: 0;
+  animation: cgaPin 0.9s 1.6s cubic-bezier(0.2, 1.6, 0.4, 1) forwards;
+}
+
+.cga-pfl {
+  animation: cgaFb 4s var(--d, 3.6s) ease-in-out infinite;
+}
+
+.cga-pb {
+  cursor: pointer;
+  animation: cgaPp 4s calc(var(--d, 3.6s) + 2s) ease-in-out infinite;
+}
+
+.cga-pb.hit {
+  animation: cgaHit 0.5s ease-out;
+}
+
+.cga-spk {
+  stroke: #b9ff6a;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: cgaSpk 0.45s 2.05s ease-out forwards, cgaFl 2.4s var(--d, 3.6s) ease-in-out infinite;
+}
+
+.cga-rp {
+  fill: none;
+  stroke: #67ff3a;
+  stroke-width: 2;
+  opacity: 0;
+  animation: cgaRp 1s 2s ease-out both;
+}
+
+.cga-sw {
+  fill: none;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: cgaDraw 0.7s 2.9s ease-out forwards;
+}
+
+.cga-cfx {
+  animation: cgaCfx 1.5s ease-out forwards;
+}
+
+/* ==========================================================================
+   Keyframes
+   ========================================================================== */
+@keyframes cgaDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes cgaHin {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cgaHal {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes cgaCin {
+  from {
+    transform: translate(0, 130px) scale(0.3) rotate(-60deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes cgaTab {
+  from {
+    transform: translateY(-34px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes cgaRow {
+  from {
+    transform: translateX(-26px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes cgaWipe {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes cgaPin {
+  from {
+    transform: translate(90px, 120px) rotate(320deg) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes cgaShake {
+  0% {
+    transform: translate(0, 0);
+  }
+  15% {
+    transform: translate(-3px, 2px) rotate(-0.8deg);
+  }
+  35% {
+    transform: translate(3px, -2px) rotate(0.8deg);
+  }
+  55% {
+    transform: translate(-2px, -1px);
+  }
+  75% {
+    transform: translate(1px, 1px);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes cgaTin {
+  from {
+    opacity: 0;
+    transform: translateY(34px) skewX(-24deg) scale(0.4) rotate(-18deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cgaWave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes cgaFa {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  50% {
+    transform: translate(1px, -4px) rotate(-1.4deg);
+  }
+}
+
+@keyframes cgaFb {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  50% {
+    transform: translate(-1px, 4px) rotate(2deg);
+  }
+}
+
+@keyframes cgaPp {
+  0%, 80%, 100% {
+    transform: scale(1) rotate(0);
+  }
+  86% {
+    transform: scale(1.18) rotate(-8deg);
+  }
+  92% {
+    transform: scale(0.94) rotate(6deg);
+  }
+  96% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes cgaHit {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.3) rotate(-14deg);
+  }
+  60% {
+    transform: scale(0.9) rotate(8deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes cgaSpk {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes cgaFl {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes cgaRp {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(7);
+  }
+}
+
+@keyframes cgaCyc {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  8%, 86% {
+    stroke-dashoffset: 0;
+  }
+  94%, 100% {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes cgaBxc {
+  0% {
+    stroke: #7a63d8;
+    fill: #12102a;
+  }
+  8%, 86% {
+    stroke: #7dff5a;
+    fill: #0f3a1a;
+  }
+  94%, 100% {
+    stroke: #7a63d8;
+    fill: #12102a;
+  }
+}
+
+@keyframes cgaGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(103, 255, 58, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 11px rgba(138, 77, 255, 0.65));
+  }
+}
+
+@keyframes cgaCf {
+  0% {
+    stroke-dashoffset: 0.2;
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: -1;
+    opacity: 1;
+  }
+  50.01%, 100% {
+    stroke-dashoffset: -1;
+    opacity: 0;
+  }
+}
+
+@keyframes cgaCb {
+  0%, 49.99% {
+    stroke-dashoffset: 0.2;
+    opacity: 0;
+  }
+  50% {
+    stroke-dashoffset: 0.2;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -1;
+    opacity: 1;
+  }
+}
+
+@keyframes cgaCfx {
+  0% {
+    transform: translate(0, 0) rotate(0) scale(1);
+    opacity: 1;
+  }
+  55% {
+    transform: translate(var(--x), var(--y)) rotate(var(--r));
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--x) * 1.12), calc(var(--y) + 70px)) rotate(calc(var(--r) * 2)) scale(0.4);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Details Card & Controls
+   ========================================================================== */
+.goal-celebration-details {
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: rgba(16, 22, 17, 0.85);
+  border: 1px solid #2f3e30;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.goal-celebration-kicker {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #67ff3a;
+  text-transform: uppercase;
+}
+
+.goal-celebration-name {
+  margin: 2px 0 0;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.goal-celebration-target {
+  font-size: 12px;
+  color: #a4b4a6;
+}
+
+.goal-celebration-reward-pill {
+  margin-top: 4px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(103, 255, 58, 0.15);
+  border: 1px solid #67ff3a;
+  color: #7dff3d;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.goal-celebration-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.goal-celebration-actions button {
+  flex: 1;
+  padding: 11px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.goal-celebration-primary {
+  background: #67ff3a;
+  color: #0b1c09;
+  border: none;
+  box-shadow: 0 4px 14px rgba(103, 255, 58, 0.35);
+}
+
+.goal-celebration-primary:hover {
+  background: #7dff5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(103, 255, 58, 0.5);
+}
+
+.goal-celebration-secondary {
+  background: #141126;
+  color: #bfaeff;
+  border: 1px solid #4a3c77;
+}
+
+.goal-celebration-secondary:hover {
+  background: #1e1939;
+  border-color: #8a4dff;
+  color: #fff;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .cga-mark,
+  .cga-cfl,
+  .cga-pfl,
+  .cga-pb,
+  .cga-halo,
+  .cga-cf,
+  .cga-cb,
+  .cga-k2,
+  .cga-k3,
+  .cga-bx2,
+  .cga-bx3,
+  .cga-tl {
+    animation-iteration-count: 1 !important;
+  }
+  .goal-celebration-modal,
+  .cga-tl,
+  .cga-cin,
+  .cga-pin,
+  .cga-row,
+  .cga-tab,
+  .cga-ring,
+  .cga-bar,
+  .cga-spk,
+  .cga-rp,
+  .cga-sw {
+    animation-duration: 0.01s !important;
+    animation-delay: 0s !important;
+  }
+}

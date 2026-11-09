@@ -1,0 +1,213 @@
+/* =========================================================
+   PARENT SHARE MODAL STYLES
+   Cyberpunk neon modal with quick share options:
+   Copy Link, WhatsApp, Native Share, and Portal View.
+   ========================================================= */
+
+.psm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(7, 10, 8, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  animation: psmFadeIn 0.25s ease-out both;
+}
+
+.psm-card {
+  width: min(520px, 100%);
+  background: linear-gradient(155deg, rgba(20, 28, 20, 0.98), rgba(11, 16, 12, 0.99));
+  border: 1px solid rgba(103, 255, 58, 0.35);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(103, 255, 58, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.psm-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #c9dacb;
+  font-size: 13px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+}
+
+.psm-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(103, 255, 58, 0.4);
+}
+
+.psm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: rgba(103, 255, 58, 0.14);
+  border: 1px solid rgba(103, 255, 58, 0.35);
+  color: var(--lime, #67ff3a);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  width: fit-content;
+}
+
+.psm-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f7faf7;
+}
+
+.psm-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #9cb09f;
+  line-height: 1.5;
+}
+
+/* Link Box */
+.psm-link-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+
+.psm-link-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #67ff3a;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  outline: none;
+}
+
+.psm-copy-inline-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(103, 255, 58, 0.16);
+  border: 1px solid rgba(103, 255, 58, 0.4);
+  color: #67ff3a;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.psm-copy-inline-btn:hover {
+  background: #67ff3a;
+  color: #071007;
+}
+
+/* Action Buttons Grid */
+.psm-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.psm-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.psm-btn.copy {
+  background: rgba(103, 255, 58, 0.14);
+  border-color: rgba(103, 255, 58, 0.35);
+  color: #67ff3a;
+}
+
+.psm-btn.copy:hover {
+  background: rgba(103, 255, 58, 0.25);
+  border-color: #67ff3a;
+}
+
+.psm-btn.whatsapp {
+  background: rgba(37, 211, 102, 0.14);
+  border-color: rgba(37, 211, 102, 0.35);
+  color: #25d366;
+}
+
+.psm-btn.whatsapp:hover {
+  background: rgba(37, 211, 102, 0.25);
+  border-color: #25d366;
+}
+
+.psm-btn.share {
+  background: rgba(138, 77, 255, 0.14);
+  border-color: rgba(138, 77, 255, 0.35);
+  color: #d1b4ff;
+}
+
+.psm-btn.share:hover {
+  background: rgba(138, 77, 255, 0.25);
+  border-color: #8a4dff;
+}
+
+.psm-btn.portal {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #e2ede3;
+}
+
+.psm-btn.portal:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.psm-notice {
+  font-size: 11px;
+  color: #7b8e7e;
+  line-height: 1.45;
+  margin: 0;
+  text-align: center;
+}
+
+@keyframes psmFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 480px) {
+  .psm-actions-grid {
+    grid-template-columns: 1fr;
+  }
+}

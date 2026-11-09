@@ -1,0 +1,347 @@
+/* =========================================================
+   CREW POOL CREATED CELEBRATION STYLES
+   Exact CSS animation timeline, glowing neon filters,
+   staggered particle blast, and responsive modal layout.
+   ========================================================= */
+
+.cpc-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(7, 6, 13, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: 20px 14px;
+  animation: cpcBackdropIn 0.3s ease-out both;
+}
+
+@keyframes cpcBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.cpc-modal {
+  width: min(720px, 100%);
+  background: linear-gradient(160deg, rgba(18, 25, 19, 0.98), rgba(9, 12, 11, 0.99));
+  border: 1px solid rgba(103, 255, 58, 0.32);
+  border-radius: 20px;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.95), 0 0 50px rgba(103, 255, 58, 0.16);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  animation: cpcModalIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cpcModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.cpc-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: #c9dacb;
+  font-size: 14px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.cpc-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: rgba(103, 255, 58, 0.4);
+}
+
+.cpc-stage {
+  width: 100%;
+  max-width: 648px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  margin: 0 auto;
+}
+
+.cpc-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* Base static state */
+.cpc-ringBase { stroke-dasharray: 100; }
+.cpc-hl { stroke-dasharray: 14 186; stroke-dashoffset: 14; }
+.cpc-sp { stroke-dasharray: 1; fill: none; stroke: #b6ff7a; stroke-width: 3.5; stroke-linecap: round; }
+.cpc-chk { stroke-dasharray: 1; }
+.cpc-shock { opacity: 0; transform-origin: 385px 283px; }
+.cpc-shock2 { opacity: 0; transform-origin: 385px 283px; }
+.cpc-pop { transform-box: fill-box; transform-origin: 50% 100%; }
+.cpc-bob, .cpc-cfIdle, .cpc-glowP, .cpc-title, .cpc-sub, .cpc-cloth, .cpc-flagIn { transform-box: fill-box; }
+.cpc-title, .cpc-sub { transform-origin: center; }
+.cpc-glowP { transform-origin: center; }
+.cpc-pole { transform-origin: 319px 222px; }
+.cpc-flagIn { transform-origin: left center; }
+.cpc-cloth { transform-origin: left center; }
+.cpc-cfIdle { transform-origin: center; }
+.cpc-title { filter: drop-shadow(0 0 12px rgba(103, 255, 58, 0.28)); }
+
+/* Animation timeline (.go state) */
+.cpc-go .cpc-glowP {
+  animation: cpcGIn 1.1s 0.1s ease-out backwards, cpcGP 3s 1.4s ease-in-out infinite alternate;
+}
+.cpc-go .cpc-ringBase {
+  animation: cpcDraw 1.1s 0.25s cubic-bezier(0.3, 0.6, 0.3, 1) backwards, cpcRp 2.6s 1.6s ease-in-out infinite alternate;
+}
+.cpc-go .cpc-hlTop {
+  animation: cpcHlT 3.2s 1.8s linear infinite;
+}
+.cpc-go .cpc-hlBot {
+  animation: cpcHlB 3.2s 1.8s linear infinite;
+}
+
+.cpc-go .cpc-p1 { animation: cpcPopP 0.8s 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2) backwards; }
+.cpc-go .cpc-p3 { animation: cpcPopP 0.8s 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) backwards; }
+.cpc-go .cpc-p2 { animation: cpcPopP 0.9s 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.2) backwards; }
+.cpc-go .cpc-bob { animation: cpcBob 3.2s ease-in-out infinite alternate; }
+.cpc-go .cpc-b1 { animation-delay: -0.6s; }
+.cpc-go .cpc-b2 { animation-delay: -1.5s; }
+.cpc-go .cpc-b3 { animation-delay: -2.3s; }
+
+.cpc-go .cpc-pole { animation: cpcPoleUp 0.65s 0.85s cubic-bezier(0.2, 0.9, 0.3, 1.15) backwards; }
+.cpc-go .cpc-flagIn { animation: cpcUnfurl 0.7s 1.25s cubic-bezier(0.2, 0.9, 0.3, 1.25) backwards; }
+.cpc-go .cpc-cloth { animation: cpcWave 2.3s 2s ease-in-out infinite alternate; }
+
+.cpc-go .cpc-badge { animation: cpcStamp 0.75s 1.3s cubic-bezier(0.3, 0.8, 0.3, 1) backwards; }
+.cpc-go .cpc-bPulse { animation: cpcBPulse 1.8s 2.3s ease-in-out infinite alternate; }
+.cpc-go .cpc-scal { animation: cpcSpin 18s linear infinite; }
+.cpc-go .cpc-chk { animation: cpcChk 0.5s 1.85s ease-out backwards; }
+.cpc-go .cpc-shock { animation: cpcShock 1s 1.45s ease-out backwards; }
+.cpc-go .cpc-shock2 { animation: cpcShock 1.2s 1.62s ease-out backwards; }
+
+.cpc-go .cpc-cfIn { animation: cpcCfFly 1.1s var(--dl) cubic-bezier(0.15, 0.8, 0.3, 1) backwards; }
+.cpc-go .cpc-cfIdle { animation: cpcCfF var(--fd, 3.4s) ease-in-out infinite alternate; }
+
+.cpc-go .cpc-sp { animation: cpcSpIn 0.5s var(--sd) ease-out backwards, cpcSpT 2.6s calc(var(--sd) + 1s) ease-in-out infinite; }
+
+.cpc-go .cpc-title { animation: cpcTIn 0.75s 2s cubic-bezier(0.2, 0.9, 0.3, 1.2) backwards; }
+.cpc-go .cpc-sub { animation: cpcSIn 0.7s 2.35s ease-out backwards; }
+
+/* Keyframes */
+@keyframes cpcGIn { from { opacity: 0; transform: scaleX(0.2); } }
+@keyframes cpcGP { from { opacity: 0.55; } to { opacity: 0.95; } }
+@keyframes cpcDraw { from { stroke-dashoffset: 100; } }
+@keyframes cpcRp { from { stroke-opacity: 0.7; } to { stroke-opacity: 1; } }
+@keyframes cpcHlT { 0% { stroke-dashoffset: 14; } 50%, 100% { stroke-dashoffset: -100; } }
+@keyframes cpcHlB { 0%, 50% { stroke-dashoffset: 14; } 100% { stroke-dashoffset: -100; } }
+@keyframes cpcPopP { from { opacity: 0; transform: translateY(46px) scale(0.65); } 60% { opacity: 1; transform: translateY(-7px) scale(1.04); } }
+@keyframes cpcBob { from { transform: translateY(0); } to { transform: translateY(-4px); } }
+@keyframes cpcPoleUp { from { transform: scaleY(0); opacity: 0; } 30% { opacity: 1; } }
+@keyframes cpcUnfurl { from { transform: scaleX(0); opacity: 0; } 30% { opacity: 1; } }
+@keyframes cpcWave { from { transform: skewY(-2.6deg) scaleX(1); } to { transform: skewY(2.6deg) scaleX(0.965); } }
+@keyframes cpcStamp { from { opacity: 0; transform: scale(0) rotate(-120deg); } 55% { opacity: 1; transform: scale(1.28) rotate(10deg); } 78% { transform: scale(0.93) rotate(-3deg); } }
+@keyframes cpcBPulse { from { transform: scale(1); } to { transform: scale(1.05); } }
+@keyframes cpcSpin { to { transform: rotate(360deg); } }
+@keyframes cpcChk { from { stroke-dashoffset: 1; } }
+@keyframes cpcShock { from { opacity: 0.9; transform: scale(0.6); } to { opacity: 0; transform: scale(4.2); } }
+@keyframes cpcCfFly { from { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.2) rotate(-220deg); } }
+@keyframes cpcCfF { from { transform: translateY(0) rotate(0); } to { transform: translateY(-9px) rotate(var(--rot, 25deg)); } }
+@keyframes cpcSpIn { from { stroke-dashoffset: 1; opacity: 0; } 30% { opacity: 1; } }
+@keyframes cpcSpT { 0%, 55%, 100% { opacity: 1; } 78% { opacity: 0.2; } }
+@keyframes cpcTIn { from { opacity: 0; transform: translateY(26px) scale(0.92); } }
+@keyframes cpcSIn { from { opacity: 0; transform: translateY(12px); } }
+
+/* Dynamic Burst Particles */
+.cpc-burst-item {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cpcBurstFly 1.1s cubic-bezier(0.1, 0.75, 0.3, 1) forwards;
+}
+
+@keyframes cpcBurstFly {
+  0% {
+    transform: translate(385px, 283px) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--bx), var(--by)) rotate(var(--br)) scale(0.18);
+    opacity: 0;
+  }
+}
+
+/* Pool Details Box */
+.cpc-details {
+  width: 100%;
+  max-width: 580px;
+  background: rgba(14, 20, 15, 0.85);
+  border: 1px solid rgba(103, 255, 58, 0.2);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.cpc-kicker {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--lime);
+}
+
+.cpc-name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #f7faf7;
+  letter-spacing: -0.02em;
+}
+
+.cpc-subtext {
+  font-size: 13px;
+  color: #9cb09f;
+  margin: 0;
+}
+
+.cpc-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.cpc-pill {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-mono, 'DM Mono', monospace);
+}
+
+.cpc-pill.target {
+  background: rgba(103, 255, 58, 0.14);
+  border: 1px solid rgba(103, 255, 58, 0.35);
+  color: #a4ff72;
+}
+
+.cpc-pill.reward {
+  background: rgba(138, 77, 255, 0.18);
+  border: 1px solid rgba(138, 77, 255, 0.4);
+  color: #d1b4ff;
+}
+
+.cpc-pill.members {
+  background: rgba(255, 216, 74, 0.12);
+  border: 1px solid rgba(255, 216, 74, 0.3);
+  color: #ffd84a;
+}
+
+/* Modal Actions */
+.cpc-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  width: 100%;
+  max-width: 580px;
+  justify-content: center;
+}
+
+.cpc-btn {
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.cpc-btn.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #e2ede3;
+}
+
+.cpc-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border-color: rgba(103, 255, 58, 0.35);
+}
+
+.cpc-btn.primary {
+  background: var(--lime);
+  color: #0b140b;
+  box-shadow: 0 0 16px rgba(103, 255, 58, 0.35);
+  flex: 1;
+  max-width: 260px;
+}
+
+.cpc-btn.primary:hover {
+  background: #7aff42;
+  box-shadow: 0 0 24px rgba(103, 255, 58, 0.6);
+  transform: translateY(-1px);
+}
+
+.cpc-hint {
+  font-size: 11px;
+  color: #7b8e7e;
+  margin-top: 10px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .cpc-modal {
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+  .cpc-name {
+    font-size: 18px;
+  }
+  .cpc-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .cpc-btn.primary {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .cpc-go * {
+    animation: none !important;
+  }
+  .cpc-modal,
+  .cpc-overlay {
+    animation: none !important;
+  }
+}

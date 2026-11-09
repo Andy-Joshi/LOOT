@@ -1,0 +1,56 @@
+.savings-progress-ring-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.savings-progress-ring {
+  transform: rotate(0deg);
+  overflow: visible;
+}
+
+.savings-ring-track {
+  stroke: rgba(45, 62, 48, 0.45);
+}
+
+.savings-ring-fill {
+  transition: stroke-dashoffset 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.savings-ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.savings-ring-percent {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #f2f8f1;
+  line-height: 1.1;
+  text-shadow: 0 0 12px rgba(103, 255, 58, 0.25);
+  font-variant-numeric: tabular-nums;
+}
+
+.savings-ring-sublabel {
+  margin-top: 2px;
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #9cb09f;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .savings-ring-fill {
+    transition: none !important;
+  }
+}
