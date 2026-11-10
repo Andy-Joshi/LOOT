@@ -1,25 +1,22 @@
+
 /**
  * Smart Buy API Service Module
  *
  * Connects the LOOT application to the standalone Smart Buy Lab comparison backend.
- * Uses configurable base URLs from environment variables and Vite proxies.
+ * Uses configurable base URLs from environment variables.
  * Handles timeouts, network errors, and store rate-limiting gracefully without crashing.
  */
 
 import { SAMPLE_IPHONE_DATA } from '../data/smartBuySampleData.js'
 
 // Base URL resolution:
-// In browser Vite dev environment: uses '/api/smartbuy' (Vite dev proxy rewrites to Smart Buy backend)
-// In direct/production calls: uses import.meta.env.VITE_SMARTBUY_API_URL or fallback
+// Production: connects directly to the deployed Smart Buy Render backend.
+// Development: can be configured using VITE_SMARTBUY_API_URL.
 export const getSmartBuyBaseUrl = () => {
-  if (typeof window !== 'undefined' && window.location && window.location.origin) {
-    // Vite proxy handles /api/smartbuy -> http://localhost:5000/api
-    return '/api/smartbuy'
-  }
   return (
-    (typeof process !== 'undefined' && process.env?.VITE_SMARTBUY_API_URL) ||
-    'http://localhost:5000/api'
-  )
+    import.meta.env.VITE_SMARTBUY_API_URL ||
+    'https://smart-buy-api-sdqj.onrender.com/api'
+  ).replace(/\/$/, '')
 }
 
 const DEFAULT_TIMEOUT_MS = 14000
@@ -30,6 +27,7 @@ const DEFAULT_TIMEOUT_MS = 14000
 export function isProductUrl(val) {
   if (!val || typeof val !== 'string') return false
   const str = val.trim().toLowerCase()
+
   return (
     /^https?:\/\//.test(str) ||
     str.startsWith('www.') ||
@@ -54,28 +52,30 @@ async function fetchWithTimeout(resource, options = {}) {
       ...fetchOptions,
       signal: controller.signal,
     })
+
     clearTimeout(id)
     return response
   } catch (error) {
     clearTimeout(id)
+
     if (error.name === 'AbortError') {
-      const timeoutErr = new Error(`Request timed out after ${Math.round(timeout / 1000)}s`)
+      const timeoutErr = new Error(
+        `Request timed out after ${Math.round(timeout / 1000)}s`
+      )
       timeoutErr.isTimeout = true
       throw timeoutErr
     }
+
     throw error
   }
 }
 
 /**
  * Search for best prices by product name or query
- *
- * @param {string} query - Product name (e.g. "iPhone 17 Pro")
- * @param {Object} [options] - Optional timeout and signal override
- * @returns {Promise<Object>} Comparison result
  */
 export async function searchProductByName(query, options = {}) {
   const trimmed = (query || '').trim()
+
   if (!trimmed) {
     throw new Error('Please enter a product name or paste a store link.')
   }
@@ -96,16 +96,28 @@ export async function searchProductByName(query, options = {}) {
 
     if (!res.ok) {
       if (res.status === 429) {
-        const err = new Error(data.error || 'Rate limit exceeded. Please wait a moment before searching again.')
+        const err = new Error(
+          data.error ||
+          'Rate limit exceeded. Please wait a moment before searching again.'
+        )
         err.status = 429
         throw err
       }
+
       if (res.status === 400) {
-        const err = new Error(data.error || 'Invalid search query. Please try searching for a brand and model.')
+        const err = new Error(
+          data.error ||
+          'Invalid search query. Please try searching for a brand and model.'
+        )
         err.status = 400
         throw err
       }
-      const err = new Error(data.error || data.message || `Store comparison service returned HTTP ${res.status}`)
+
+      const err = new Error(
+        data.error ||
+        data.message ||
+        `Store comparison service returned HTTP ${res.status}`
+      )
       err.status = res.status
       throw err
     }
@@ -113,13 +125,18 @@ export async function searchProductByName(query, options = {}) {
     return data
   } catch (err) {
     if (err.isTimeout) {
-      throw new Error('Comparison search timed out. Retailers may be slow or rate-limiting. Please try again.')
+      throw new Error(
+        'Comparison search timed out. Retailers may be slow or rate-limiting. Please try again.'
+      )
     }
+
     if (err.status) {
       throw err
     }
-    // Network failure / server offline
-    const netErr = new Error('Smart Buy engine is unreachable. Please verify that the backend is running on port 5000.')
+
+    const netErr = new Error(
+      'Smart Buy engine is unreachable. Please verify that the backend is running.'
+    )
     netErr.isNetworkError = true
     throw netErr
   }
@@ -127,13 +144,10 @@ export async function searchProductByName(query, options = {}) {
 
 /**
  * Search for best prices by direct product URL
- *
- * @param {string} url - Store product URL
- * @param {Object} [options] - Optional timeout
- * @returns {Promise<Object>} Comparison result
  */
 export async function searchProductByUrl(url, options = {}) {
   const trimmed = (url || '').trim()
+
   if (!trimmed) {
     throw new Error('Please enter a valid product link.')
   }
@@ -156,17 +170,29 @@ export async function searchProductByUrl(url, options = {}) {
 
     if (!res.ok) {
       if (res.status === 429) {
-        const err = new Error(data.error || 'Rate limit exceeded. Please wait a moment before searching again.')
+        const err = new Error(
+          data.error ||
+          'Rate limit exceeded. Please wait a moment before searching again.'
+        )
         err.status = 429
         throw err
       }
+
       if (res.status === 400) {
-        const err = new Error(data.error || 'Could not parse product details from this link. Try searching by product name.')
+        const err = new Error(
+          data.error ||
+          'Could not parse product details from this link. Try searching by product name.'
+        )
         err.status = 400
         err.isBlocked = data.diagnostics?.status === 'BLOCKED_INVALID_URL'
         throw err
       }
-      const err = new Error(data.error || data.message || `Store comparison service returned HTTP ${res.status}`)
+
+      const err = new Error(
+        data.error ||
+        data.message ||
+        `Store comparison service returned HTTP ${res.status}`
+      )
       err.status = res.status
       throw err
     }
@@ -174,12 +200,18 @@ export async function searchProductByUrl(url, options = {}) {
     return data
   } catch (err) {
     if (err.isTimeout) {
-      throw new Error('Store lookup timed out. The retailer may be slow or blocking automated checks.')
+      throw new Error(
+        'Store lookup timed out. The retailer may be slow or blocking automated checks.'
+      )
     }
+
     if (err.status) {
       throw err
     }
-    const netErr = new Error('Smart Buy engine is unreachable. Please verify that the backend is running on port 5000.')
+
+    const netErr = new Error(
+      'Smart Buy engine is unreachable. Please verify that the backend is running.'
+    )
     netErr.isNetworkError = true
     throw netErr
   }
@@ -187,8 +219,6 @@ export async function searchProductByUrl(url, options = {}) {
 
 /**
  * Check Smart Buy comparison engine health status
- *
- * @returns {Promise<Object>} Health report
  */
 export async function checkSmartBuyHealth() {
   const baseUrl = getSmartBuyBaseUrl()
@@ -197,15 +227,22 @@ export async function checkSmartBuyHealth() {
   try {
     const res = await fetchWithTimeout(endpoint, {
       method: 'GET',
-      headers: { Accept: 'application/json' },
+      headers: {
+        Accept: 'application/json',
+      },
       timeout: 4000,
     })
 
     if (!res.ok) {
-      return { online: false, status: `HTTP ${res.status}`, providers: [] }
+      return {
+        online: false,
+        status: `HTTP ${res.status}`,
+        providers: [],
+      }
     }
 
     const data = await res.json().catch(() => ({}))
+
     return {
       online: data.status === 'healthy' || res.ok,
       status: data.status || 'healthy',
